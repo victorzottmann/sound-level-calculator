@@ -1,5 +1,6 @@
 require 'colorize'
 require_relative 'validators'
+require_relative 'reverb-time'
 
 def introduction()
   system("clear")
@@ -35,6 +36,8 @@ def introduction()
     # Sound level
   when 2
     # RT
+    include RT
+    RT.menu()
   when 3
     # Absorption
   when 4
