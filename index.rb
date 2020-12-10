@@ -6,7 +6,7 @@ def introduction()
   system("clear")
   
   # Sound pressure levels of speech in 1/1 octave-bands 
-  SPEECH_LEVEL = {
+  speech_level = {
     "125Hz": 49.9,
     "250Hz": 54.3,
     "500Hz": 58,
@@ -18,7 +18,7 @@ def introduction()
   puts "\nHello! Welcome to this simple room acoustics calculator."
   puts "\nIMPORTANT: Only measurements for rectangular rooms are acceptable at this time.".colorize(:red)
   puts "\nThe following levels of speech are used as the reference sound source:\n\n"
-  SPEECH_LEVEL.each_with_index do |(freq, level), i|
+  speech_level.each_with_index do |(freq, level), i|
     puts "- #{freq}: #{level} dB".colorize(:cyan)
   end
   
