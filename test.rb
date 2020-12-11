@@ -41,6 +41,11 @@ ceiling_surface_area = 90.2
 large_walls_surface_area = 27.5
 small_walls_surface_area = 20.5
 
+room_volume = 225.5
+
+total_surface_area = floor_surface_area + ceiling_surface_area + large_walls_surface_area + small_walls_surface_area
+
+
 floor_coeffs = absorption[0][:coeffs]
 ceiling_coeffs = absorption[1][:coeffs]
 large_walls_coeffs = absorption[2][:coeffs]
@@ -84,7 +89,17 @@ avg_absorption_1000Hz = (abs_array.map{|freq| freq["1000Hz"]}.inject(:+)) / abs_
 avg_absorption_2000Hz = (abs_array.map{|freq| freq["2000Hz"]}.inject(:+)) / abs_array.count
 avg_absorption_4000Hz = (abs_array.map{|freq| freq["4000Hz"]}.inject(:+)) / abs_array.count
 
+avg_absorption_coeff_125Hz = (total_absorption_125Hz / total_surface_area).truncate(2)
+avg_absorption_coeff_250Hz = (total_absorption_250Hz / total_surface_area).truncate(2)
+avg_absorption_coeff_500Hz = (total_absorption_500Hz / total_surface_area).truncate(2)
+avg_absorption_coeff_1000Hz = (total_absorption_1000Hz / total_surface_area).truncate(2)
+avg_absorption_coeff_2000Hz = (total_absorption_2000Hz / total_surface_area).truncate(2)
+avg_absorption_coeff_4000Hz = (total_absorption_4000Hz / total_surface_area).truncate(2)
 
+reverb_sabine = ((0.16 * room_volume) / total_absorption_125Hz).truncate(2)
+reverb_eyring = ((0.16 * room_volume) / (-2.3 * total_surface_area * Math.log10(1 - avg_absorption_coeff_125Hz))).truncate(2)
 
+puts reverb_sabine
+puts reverb_eyring
 
 
