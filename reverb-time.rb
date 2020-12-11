@@ -51,7 +51,7 @@ module ReverbTime
 
   ### Reverb Menu ###
 
-  def self.menu()
+  def self.rt_menu()
     system ("clear")
 
     total_surface = 0
@@ -169,8 +169,7 @@ module ReverbTime
 
     ####################################
 
-    
-
+  
     puts "\nTotal absorption of the room (m2):".colorize(:light_green)
     total_absorption = gets.chomp.to_f
 
@@ -184,3 +183,5 @@ module ReverbTime
     another_calc?()
   end
 end
+
+

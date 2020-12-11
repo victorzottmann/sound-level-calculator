@@ -4,6 +4,8 @@ require_relative 'reverb-time'
 
 def intro()
   system("clear")
+
+  include ReverbTime
   
   # Sound pressure levels of speech in 1/1 octave-bands 
   speech_level = {
@@ -35,10 +37,7 @@ def intro()
     # Sound level
   when 2
     # Reverb Time
-    
-    include ReverbTime
-    ReverbTime.menu()
-    
+    ReverbTime.rt_menu()
   when 3
     # Absorption
   when 4
