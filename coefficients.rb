@@ -2,7 +2,6 @@
 
 ##################### Masonry Walls #####################
 
-
 module Coeffs
 
   rough_concrete = {
