@@ -2,7 +2,7 @@ require 'colorize'
 
 module SoundLevel
 
-  def self.spl_menu()
+  def self.spl_menu
     system("clear")
   
     puts "\n##### SOUND LEVEL CALCULATOR #####".colorize(:light_yellow)
@@ -11,6 +11,7 @@ module SoundLevel
     puts "\nPlease select one of the following options:"
     puts "\n1. Sum and Average of Levels".colorize(:light_green)
     puts "2. A-Weighting Conversion".colorize(:light_green)
+    puts "3. Exit".colorize(:light_green)
     choice = gets.chomp.to_i
     case choice
     when 1
@@ -66,17 +67,17 @@ module SoundLevel
         freq *= 2
         puts "%.0fHz = %0.1f dB(A)".colorize(:cyan) % [freq, i]
       end
+    when 3
+      system("exit")
     else
       puts "Invalid input!".colorize(:red)
-      puts "Only 1 or 2 are accepted."
+      puts "Only values between 1-3 are accepted."
       puts "Press any key to continue."
       gets
       spl_menu()  
     end   
   end 
 end
-
-SoundLevel.spl_menu()
 
 
 

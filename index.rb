@@ -3,6 +3,7 @@ require_relative 'validators'
 require_relative 'reverb-time'
 require_relative 'sound-level'
 
+
 def intro()
   system("clear")
 
@@ -19,7 +20,6 @@ def intro()
   }
   
   puts "\nHello! Welcome to this simple room acoustics calculator."
-  puts "\nIMPORTANT: Only measurements for rectangular rooms are acceptable at this time.".colorize(:red)
   puts "\nThe following levels of speech are used as the reference sound source:\n\n"
   speech_level.each_with_index do |(freq, level), i|
     puts "- #{freq}: #{level} dB".colorize(:cyan)
@@ -29,10 +29,11 @@ def intro()
   puts "\n1. Sound Pressure Level".colorize(:light_green)
   puts "2. Reverberation Time (RT)".colorize(:light_green)
   puts "3. Transmission Loss".colorize(:light_green)
+  puts "4. Exit".colorize(:light_green)
   
   input = gets.chomp.to_i
   valid_input = Validators.validate_input(input)
-  case valid_input
+  case input
   when 1
     # Sound level
     SoundLevel.spl_menu()
