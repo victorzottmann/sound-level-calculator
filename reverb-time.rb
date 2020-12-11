@@ -1,5 +1,5 @@
 
-module RT
+module ReverbTime
   def menu()
     system ("clear")
 

@@ -1,9 +1,12 @@
 require 'colorize'
 require_relative 'validators'
 require_relative 'reverb-time'
+require_relative 'sound-level'
 
-def introduction()
+def intro()
   system("clear")
+
+  include ReverbTime
   
   # Sound pressure levels of speech in 1/1 octave-bands 
   speech_level = {
@@ -34,10 +37,10 @@ def introduction()
   case input
   when 1
     # Sound level
+    SoundLevel.menu()
   when 2
     # RT
-    include RT
-    RT.menu()
+    ReverbTime.menu()
   when 3
     # Absorption
   when 4
@@ -47,13 +50,13 @@ def introduction()
       puts "\nInvalid input".colorize(:red)
       puts "Type any key to continue"
       gets
-      introduction()
+      intro()
     end
   end
 
 end
 
-introduction()
+intro()
 
 
 
