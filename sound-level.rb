@@ -36,7 +36,7 @@ module SoundLevel
       level_avg.each {|j| total_avg += j}
       
       puts "\nThe SPL sum is equal to %.1f dB".colorize(:light_yellow) % [10*Math.log10(total_sum)]
-      puts "The average SPL is equal to %.1f dB".colorize(:light_yellow) % [10*Math.log10(total_avg)]
+      puts "The average SPL is equal to %.1f dB".colorize(:light_yellow) % [10*Math.log10(total_avg)]   
     when 2
       puts "\nA-Weighting Conversion".colorize(:light_yellow)
       puts "\nPlease input sound levels for the following octave bands (63Hz - 8000Hz):\n\n"

@@ -5,7 +5,7 @@ module ReverbTime
 
   ### Reverb Menu ###
 
-  def self.reverb_menu()
+  def self.reverb_calculation()
     system ("clear")
 
     ##### Absorption Coefficients #####
@@ -193,19 +193,29 @@ module ReverbTime
       floor_type = gets.chomp.to_i
       case floor_type
       when 1
-        floor_coeffs = absorption[0][:coeffs]
+        absorption.each do |item|
+         if item[:material] == "thin_carpet_concrete"
+          floor_coeffs = item[:coeffs]
+         end
+        end
         floor_coeffs.each do |frequency, coeff|
           floor_absorption[frequency] = (coeff * floor_surface_area).truncate(2)
         end
+        break
       when 2
-        floor_coeffs = absorption[1][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "wooden_floor_joists"
+           floor_coeffs = item[:coeffs]
+          end
+         end
         floor_coeffs.each do |frequency, coeff|
           floor_absorption[frequency] = (coeff * floor_surface_area).truncate(2)
         end
+        break
       else
         puts "\nWARNINNG: Invalid input!".colorize(:red)
         puts "Only 1 and 2 are accepted."
-        puts "\nPress any key to continue"
+        puts "\nHit Enter to continue"
         gets
       end
     end
@@ -217,19 +227,29 @@ module ReverbTime
       ceiling_type = gets.chomp.to_i
       case ceiling_type
       when 1
-        ceiling_coeffs = absorption[2][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "mineral_wool_tiles"
+           ceiling_coeffs = item[:coeffs]
+          end
+         end
         ceiling_coeffs.each do |frequency, coeff|
           ceiling_absorption[frequency] = (coeff * ceiling_surface_area).truncate(2)
         end
+        break
       when 2
-        ceiling_coeffs = absorption[3][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "gypsum_plaster_tiles"
+           ceiling_coeffs = item[:coeffs]
+          end
+         end
         ceiling_coeffs.each do |frequency, coeff|
           ceiling_absorption[frequency] = (coeff * ceiling_surface_area).truncate(2)
         end
+        break
       else
         puts "\nWARNINNG: Invalid input!".colorize(:red)
         puts "Only 1 and 2 are accepted."
-        puts "\nPress any key to continue"
+        puts "\nHit Enter to continue"
         gets
       end
     end
@@ -241,19 +261,29 @@ module ReverbTime
       front_wall_type = gets.chomp.to_i
       case front_wall_type
       when 1
-        front_wall_coeffs = absorption[4][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "brickwork"
+           front_wall_coeffs = item[:coeffs]
+          end
+         end
         front_wall_coeffs.each do |frequency, coeff|
           front_wall_absorption[frequency] = (coeff * front_wall_surface_area).truncate(2)
         end
+        break
       when 2
-        front_wall_coeffs = absorption[5][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "plasterboard"
+           front_wall_coeffs = item[:coeffs]
+          end
+         end
         front_wall_coeffs.each do |frequency, coeff|
           front_wall_absorption[frequency] = (coeff * front_wall_surface_area).truncate(2)
         end
+        break
       else
         puts "\nWARNINNG: Invalid input!".colorize(:red)
         puts "Only 1 and 2 are accepted."
-        puts "\nPress any key to continue"
+        puts "\nHit Enter to continue"
         gets
       end
     end
@@ -265,19 +295,29 @@ module ReverbTime
       back_wall_type = gets.chomp.to_i
       case back_wall_type
       when 1
-        back_wall_coeffs = absorption[4][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "brickwork"
+           back_wall_coeffs = item[:coeffs]
+          end
+         end
         back_wall_coeffs.each do |frequency, coeff|
           back_wall_absorption[frequency] = (coeff * back_wall_surface_area).truncate(2)
         end
+        break
       when 2
-        back_wall_coeffs = absorption[5][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "plasterboard"
+           back_wall_coeffs = item[:coeffs]
+          end
+         end
         back_wall_coeffs.each do |frequency, coeff|
           back_wall_absorption[frequency] = (coeff * back_wall_surface_area).truncate(2)
         end
+        break
       else
         puts "\nWARNINNG: Invalid input!".colorize(:red)
         puts "Only 1 and 2 are accepted."
-        puts "\nPress any key to continue"
+        puts "\nHit Enter to continue"
         gets
       end
     end
@@ -289,19 +329,29 @@ module ReverbTime
       left_wall_type = gets.chomp.to_i
       case left_wall_type
       when 1
-        left_wall_coeffs = absorption[4][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "brickwork"
+           left_wall_coeffs = item[:coeffs]
+          end
+         end
         left_wall_coeffs.each do |frequency, coeff|
           left_wall_absorption[frequency] = (coeff * left_wall_surface_area).truncate(2)
         end
+        break
       when 2
-        left_wall_coeffs = absorption[5][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "plasterboard"
+           left_wall_coeffs = item[:coeffs]
+          end
+         end
         left_wall_coeffs.each do |frequency, coeff|
           left_wall_absorption[frequency] = (coeff * left_wall_surface_area).truncate(2)
         end
+        break
       else
         puts "\nWARNINNG: Invalid input!".colorize(:red)
         puts "Only 1 and 2 are accepted."
-        puts "\nPress any key to continue"
+        puts "\nHit Enter to continue"
         gets
       end
     end
@@ -313,19 +363,29 @@ module ReverbTime
       right_wall_type = gets.chomp.to_i
       case right_wall_type
       when 1
-        right_wall_coeffs = absorption[4][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "brickwork"
+           right_wall_coeffs = item[:coeffs]
+          end
+         end
         right_wall_coeffs.each do |frequency, coeff|
           right_wall_absorption[frequency] = (coeff * right_wall_surface_area).truncate(2)
         end
+        break
       when 2
-        right_wall_coeffs = absorption[5][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "plasterboard"
+           right_wall_coeffs = item[:coeffs]
+          end
+         end
         right_wall_coeffs.each do |frequency, coeff|
           right_wall_absorption[frequency] = (coeff * right_wall_surface_area).truncate(2)
         end
+        break
       else
         puts "\nWARNINNG: Invalid input!".colorize(:red)
         puts "Only 1 and 2 are accepted."
-        puts "\nPress any key to continue"
+        puts "\nHit Enter to continue"
         gets
       end
     end
@@ -337,19 +397,29 @@ module ReverbTime
       door_type = gets.chomp.to_i
       case door_type
       when 1
-        door_coeffs = absorption[6][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "wood_hollow_door"
+           door_coeffs = item[:coeffs]
+          end
+         end
         door_coeffs.each do |frequency, coeff|
           door_absorption[frequency] = (coeff * door_surface_area).truncate(2)
         end
+        break
       when 2
-        door_coeffs = absorption[7][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "timber_solid_door"
+           door_coeffs = item[:coeffs]
+          end
+         end
         door_coeffs.each do |frequency, coeff|
           door_absorption[frequency] = (coeff * door_surface_area).truncate(2)
         end
+        break
       else
         puts "\nWARNINNG: Invalid input!".colorize(:red)
         puts "Only 1 and 2 are accepted."
-        puts "\nPress any key to continue"
+        puts "\nHit Enter to continue"
         gets
       end
     end
@@ -361,24 +431,34 @@ module ReverbTime
       window_type = gets.chomp.to_i
       case window_type
       when 1
-        window_coeffs = absorption[8][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "four_mm_glass"
+           window_coeffs = item[:coeffs]
+          end
+         end
         window_coeffs.each do |frequency, coeff|
           window_absorption[frequency] = (coeff * window_surface_area).truncate(2)
         end
+        break
       when 2
-        window_coeffs = absorption[9][:coeffs]
+        absorption.each do |item|
+          if item[:material] == "six_mm_glass"
+           window_coeffs = item[:coeffs]
+          end
+         end
         window_coeffs.each do |frequency, coeff|
           window_absorption[frequency] = (coeff * window_surface_area).truncate(2)
         end
+        break
       else
         puts "\nWARNINNG: Invalid input!".colorize(:red)
         puts "Only 1 and 2 are accepted."
-        puts "\nPress any key to continue"
+        puts "\nHit Enter to continue"
         gets
       end
     end
 
-    all_surfaces_coeffs = []
+    all_surfaces_coeffs = Array.new
     all_surfaces_coeffs.push(
       floor_absorption, 
       ceiling_absorption, 
@@ -406,7 +486,7 @@ module ReverbTime
       "4000Hz" => total_absorption_4000Hz
     }
 
-    puts "\nABSORPTION VALUES:\n\n".colorize(:light_yellow)
+    puts "\nABSORPTION VALUES:".colorize(:light_yellow)
 
     puts "\nThe total absorption per octave band is:\n\n"
     net_absorption = 0.0
@@ -414,9 +494,9 @@ module ReverbTime
       puts "- #{octave}: #{abs.truncate(2)} m2".colorize(:cyan)
       net_absorption += abs
     end
-    puts "\nThe total absortion is: %.2f m2\n\n" % [net_absorption]
+    puts "\nThe total absortion is: %.2f m2" % [net_absorption]
 
-    puts "REVERB TIME VALUES"
+    puts "\nREVERB TIME VALUES:".colorize(:light_yellow)
 
     puts "\nReverb times for each octave band:\n\n"
     reverb_octave_bands = Hash.new
@@ -425,29 +505,27 @@ module ReverbTime
       puts "- #{octave}: #{reverb_time} seconds".colorize(:cyan)
       reverb_octave_bands[octave] = reverb_time
     end
-    mid_average = ((reverb_times["500Hz"] + reverb_times["1000Hz"]) / 2)
-    puts "\nThe mid-frequency average (500Hz and 1000Hz) is: %.2f seconds\n\n" % [mid_average]
+    mid_average = ((reverb_octave_bands["500Hz"] + reverb_octave_bands["1000Hz"]) / 2)
+    puts "\nThe mid-frequency average (500Hz and 1000Hz) is: %.2f seconds" % [mid_average]
 
-    another_calc?()
+    another_calculation()
   end
 
   ##### Repeat? #####
 
-  def self.another_calc?()
+  def self.another_calculation()
     puts "\nWould you like to make another RT calculation? (y/n)".colorize(:light_green)
     try_again = gets.chomp
     case try_again 
     when 'y'
-      reverb_menu()
+      reverb_calculation()
     when 'n'
-      puts "See you later!"
-      system("exit")
+      puts "\nSee you later!".colorize(:light_yellow)
+      exit!
     else
       puts "\nInvalid input! Only (y/n) are accepted.".colorize(:red)
-      another_calc?()
+      another_calculation()
     end
   end
 end
-
-
 
