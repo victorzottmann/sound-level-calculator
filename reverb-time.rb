@@ -1,25 +1,9 @@
 
-require 'tty-box'
 require 'colorize'
 
 module ReverbTime
 
   ### Reverb Menu ###
-
-  def self.another_calc?()
-    puts "\nWould you like to make another RT calculation? (y/n)".colorize(:light_green)
-    try_again = gets.chomp
-    case try_again 
-    when 'y'
-      reverb_menu()
-    when 'n'
-      puts "See you later!"
-      system("exit")
-    else
-      puts "\nInvalid input! Only (y/n) are accepted.".colorize(:red)
-      another_calc?()
-    end
-  end
 
   def self.reverb_menu()
     system ("clear")
@@ -448,8 +432,22 @@ module ReverbTime
   end
 
   ##### Repeat? #####
+
+  def self.another_calc?()
+    puts "\nWould you like to make another RT calculation? (y/n)".colorize(:light_green)
+    try_again = gets.chomp
+    case try_again 
+    when 'y'
+      reverb_menu()
+    when 'n'
+      puts "See you later!"
+      system("exit")
+    else
+      puts "\nInvalid input! Only (y/n) are accepted.".colorize(:red)
+      another_calc?()
+    end
+  end
 end
 
-ReverbTime.reverb_menu()
 
 
