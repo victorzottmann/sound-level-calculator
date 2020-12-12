@@ -23,7 +23,7 @@ def intro()
   case input
   when 1
     # Distance
-    SourceDistance.distance_calculation()
+    SourceDistance.attenuation()
   when 2
     # Sound level
     SoundLevel.level_calculation()
