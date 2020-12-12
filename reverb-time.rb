@@ -150,6 +150,15 @@ module ReverbTime
     door_coeffs = {}
     window_coeffs = {}
 
+    floor_absorption = {}
+    ceiling_absorption = {}
+    front_wall_absorption = {}
+    back_wall_absorption = {}
+    left_wall_absorption = {}
+    right_wall_absorption = {}
+    door_absorption = {}
+    window_absorption = {}
+
     puts "\n##### REVERBERATION TIME CALCULATOR #####".colorize(:light_yellow)
     puts "\nWelcome to the RT calculator!"
     puts "\nThis calculator displays the RT values for both the Sabine and Norris-Eyring formulas."
@@ -166,6 +175,12 @@ module ReverbTime
     print "\nLeft / Right walls: ".colorize(:light_green)
     right_wall_surface_area = left_wall_surface_area = gets.chomp.to_f
 
+    print "\nDoors: ".colorize(:light_green)
+    door_surface_area = gets.chomp.to_f
+
+    print "\nWindows: ".colorize(:light_green)
+    window_surface_area = gets.chomp.to_f
+
     print "\nVolume of the room (m3): ".colorize(:light_green)
     room_volume = gets.chomp.to_f
 
@@ -178,8 +193,14 @@ module ReverbTime
     case floor_type
     when 1
       floor_coeffs = absorption[0][:coeffs]
+      floor_coeffs.each do |frequency, coeff|
+        floor_absorption[frequency] = (coeff * floor_surface_area).truncate(2)
+      end
     when 2
       floor_coeffs = absorption[1][:coeffs]
+      floor_coeffs.each do |frequency, coeff|
+        floor_absorption[frequency] = (coeff * floor_surface_area).truncate(2)
+      end
     else
     end
   
@@ -190,8 +211,14 @@ module ReverbTime
     case ceiling_type
     when 1
       ceiling_coeffs = absorption[2][:coeffs]
+      ceiling_coeffs.each do |frequency, coeff|
+        ceiling_absorption[frequency] = (coeff * ceiling_surface_area).truncate(2)
+      end
     when 2
       ceiling_coeffs = absorption[3][:coeffs]
+      ceiling_coeffs.each do |frequency, coeff|
+        ceiling_absorption[frequency] = (coeff * ceiling_surface_area).truncate(2)
+      end
     else
     end
 
@@ -202,8 +229,14 @@ module ReverbTime
     case front_wall_type
     when 1
       front_wall_coeffs = absorption[4][:coeffs]
+      front_wall_coeffs.each do |frequency, coeff|
+        front_wall_absorption[frequency] = (coeff * front_wall_surface_area).truncate(2)
+      end
     when 2
       front_wall_coeffs = absorption[5][:coeffs]
+      front_wall_coeffs.each do |frequency, coeff|
+        front_wall_absorption[frequency] = (coeff * front_wall_surface_area).truncate(2)
+      end
     else
     end
 
@@ -214,20 +247,14 @@ module ReverbTime
     case back_wall_type
     when 1
       back_wall_coeffs = absorption[4][:coeffs]
+      back_wall_coeffs.each do |frequency, coeff|
+        back_wall_absorption[frequency] = (coeff * back_wall_surface_area).truncate(2)
+      end
     when 2
       back_wall_coeffs = absorption[5][:coeffs]
-    else
-    end
-
-    puts "\nRight wall:"
-    puts "\n1. Brickwork".colorize(:light_green)
-    puts "2. Plasterboard".colorize(:light_green)
-    right_wall_type = gets.chomp.to_i
-    case right_wall_type
-    when 1
-      right_wall_coeffs = absorption[4][:coeffs]
-    when 2
-      right_wall_coeffs = absorption[5][:coeffs]
+      back_wall_coeffs.each do |frequency, coeff|
+        back_wall_absorption[frequency] = (coeff * back_wall_surface_area).truncate(2)
+      end
     else
     end
 
@@ -238,8 +265,32 @@ module ReverbTime
     case left_wall_type
     when 1
       left_wall_coeffs = absorption[4][:coeffs]
+      left_wall_coeffs.each do |frequency, coeff|
+        left_wall_absorption[frequency] = (coeff * left_wall_surface_area).truncate(2)
+      end
     when 2
       left_wall_coeffs = absorption[5][:coeffs]
+      left_wall_coeffs.each do |frequency, coeff|
+        left_wall_absorption[frequency] = (coeff * left_wall_surface_area).truncate(2)
+      end
+    else
+    end
+
+    puts "\nRight wall:"
+    puts "\n1. Brickwork".colorize(:light_green)
+    puts "2. Plasterboard".colorize(:light_green)
+    right_wall_type = gets.chomp.to_i
+    case right_wall_type
+    when 1
+      right_wall_coeffs = absorption[4][:coeffs]
+      right_wall_coeffs.each do |frequency, coeff|
+        right_wall_absorption[frequency] = (coeff * right_wall_surface_area).truncate(2)
+      end
+    when 2
+      right_wall_coeffs = absorption[5][:coeffs]
+      right_wall_coeffs.each do |frequency, coeff|
+        right_wall_absorption[frequency] = (coeff * right_wall_surface_area).truncate(2)
+      end
     else
     end
 
@@ -250,8 +301,14 @@ module ReverbTime
     case door_type
     when 1
       door_coeffs = absorption[6][:coeffs]
+      door_coeffs.each do |frequency, coeff|
+        door_absorption[frequency] = (coeff * door_surface_area).truncate(2)
+      end
     when 2
       door_coeffs = absorption[7][:coeffs]
+      door_coeffs.each do |frequency, coeff|
+        door_absorption[frequency] = (coeff * door_surface_area).truncate(2)
+      end
     else
     end
 
@@ -262,20 +319,53 @@ module ReverbTime
     case window_type
     when 1
       window_coeffs = absorption[8][:coeffs]
+      window_coeffs.each do |frequency, coeff|
+        window_absorption[frequency] = (coeff * window_surface_area).truncate(2)
+      end
     when 2
       window_coeffs = absorption[9][:coeffs]
+      window_coeffs.each do |frequency, coeff|
+        window_absorption[frequency] = (coeff * window_surface_area).truncate(2)
+      end
     else
     end
+
+    all_surfaces_coeffs = []
+    all_surfaces_coeffs.push(
+      floor_absorption, 
+      ceiling_absorption, 
+      front_wall_absorption, 
+      back_wall_absorption, 
+      left_wall_absorption, 
+      right_wall_absorption, 
+      door_absorption, 
+      window_absorption
+    )
+
+    total_absorption_125Hz = all_surfaces_coeffs.map{|freq| freq["125Hz"]}.inject(:+)
+    total_absorption_250Hz = all_surfaces_coeffs.map{|freq| freq["250Hz"]}.inject(:+)
+    total_absorption_500Hz = all_surfaces_coeffs.map{|freq| freq["500Hz"]}.inject(:+)
+    total_absorption_1000Hz = all_surfaces_coeffs.map{|freq| freq["1000Hz"]}.inject(:+)
+    total_absorption_2000Hz = all_surfaces_coeffs.map{|freq| freq["2000Hz"]}.inject(:+)
+    total_absorption_4000Hz = all_surfaces_coeffs.map{|freq| freq["4000Hz"]}.inject(:+)
+
+    avg_absorption_coeff_125Hz = (total_absorption_125Hz / total_surface_area).truncate(2)
+    avg_absorption_coeff_250Hz = (total_absorption_250Hz / total_surface_area).truncate(2)
+    avg_absorption_coeff_500Hz = (total_absorption_500Hz / total_surface_area).truncate(2)
+    avg_absorption_coeff_1000Hz = (total_absorption_1000Hz / total_surface_area).truncate(2)
+    avg_absorption_coeff_2000Hz = (total_absorption_2000Hz / total_surface_area).truncate(2)
+    avg_absorption_coeff_4000Hz = (total_absorption_4000Hz / total_surface_area).truncate(2)  
+
   end
 
   ##### Methods #####
 
-  def self.reverb_sabine(volume, total_absorption)
+  def self.reverb_sabine(room_volume, total_absorption)
     rt_sabine = (0.16 * volume) / total_absorption
     return "The Sabine reverberation time is %0.2f seconds.".colorize(:light_yellow) % [rt_sabine]
   end
   
-  def self.reverb_eyring(volume, total_surface, avg_abs_coeff)
+  def self.reverb_eyring(room_volume, total_surface_area, avg_absorption_coeff)
     rt_eyring = (0.16 * volume) / (-2.3 * total_surface * Math.log10(1 - avg_abs_coeff))
     return "The Norris-Eyring reverberation time is %0.2f seconds.".colorize(:light_yellow) % [rt_eyring]
   end

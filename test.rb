@@ -96,10 +96,61 @@ avg_absorption_coeff_1000Hz = (total_absorption_1000Hz / total_surface_area).tru
 avg_absorption_coeff_2000Hz = (total_absorption_2000Hz / total_surface_area).truncate(2)
 avg_absorption_coeff_4000Hz = (total_absorption_4000Hz / total_surface_area).truncate(2)
 
-reverb_sabine = ((0.16 * room_volume) / total_absorption_125Hz).truncate(2)
+
 reverb_eyring = ((0.16 * room_volume) / (-2.3 * total_surface_area * Math.log10(1 - avg_absorption_coeff_125Hz))).truncate(2)
 
-puts reverb_sabine
-puts reverb_eyring
+# puts "125: #{total_absorption_125Hz}"
 
+total_absorption = {
+  "125Hz" => total_absorption_125Hz,
+  "250Hz" => total_absorption_250Hz,
+  "500Hz" => total_absorption_500Hz,
+  "1000Hz" => total_absorption_1000Hz,
+  "2000Hz" => total_absorption_2000Hz,
+  "4000Hz" => total_absorption_4000Hz
+}
+
+avg_coeffs = {
+  "125Hz" => avg_absorption_coeff_125Hz,
+  "250Hz" => avg_absorption_coeff_250Hz,
+  "500Hz" => avg_absorption_coeff_500Hz,
+  "1000Hz" => avg_absorption_coeff_1000Hz,
+  "2000Hz" => avg_absorption_coeff_2000Hz,
+  "4000Hz" => avg_absorption_coeff_4000Hz
+}
+
+puts "The total absorption per octave band is:"
+net_absorption = 0.0
+total_absorption.each do |octave, abs|
+  puts "- #{octave}: #{abs.truncate(2)} m2"
+  net_absorption += abs
+end
+puts "\nThe total absortion is: #{net_absorption} m2"
+
+puts "\nThe Sabine reverb times for each octave band are: "
+sabine_rt = Hash.new
+total_absorption.each do |octave, abs|
+  reverb_sabine = ((0.16 * room_volume) / abs).truncate(2)
+  puts "- #{octave}: #{reverb_sabine} seconds"
+  sabine_rt[octave] = reverb_sabine
+end
+sabine_mid_average = ((sabine_rt["500Hz"] + sabine_rt["1000Hz"]) / 2).truncate(2)
+puts "\nThe Sabine mid-frequency average is: #{sabine_mid_average} seconds"
+
+
+puts "\nThe Eyring reverb times for each octave band are:\n\n"
+eyring_rt = Hash.new
+avg_coeffs.each do |octave, coeff|
+  reverb_eyring = ((0.16 * room_volume) / (-2.3 * total_surface_area * Math.log10(1 - coeff))).truncate(2)
+  puts "- #{octave}: #{reverb_eyring} seconds"
+  eyring_rt[octave] = reverb_eyring
+end
+eyring_mid_average = ((eyring_rt["500Hz"] + eyring_rt["1000Hz"]) / 2).truncate(2)
+puts "\nThe Eyring mid-frequency average is: #{eyring_mid_average} seconds"
+
+
+
+
+# puts "Sabine: #{reverb_sabine}"
+# puts "Eyring: #{reverb_eyring}"
 

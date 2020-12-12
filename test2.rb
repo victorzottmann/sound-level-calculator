@@ -64,3 +64,10 @@ puts floor
 # end
 
 # puts total
+
+# avg_absorption_125Hz = (all_surfaces_coeffs.map{|freq| freq["125Hz"]}.inject(:+)) / all_surfaces_coeffs.count
+# avg_absorption_250Hz = (all_surfaces_coeffs.map{|freq| freq["250Hz"]}.inject(:+)) / all_surfaces_coeffs.count
+# avg_absorption_500Hz = (all_surfaces_coeffs.map{|freq| freq["500Hz"]}.inject(:+)) / all_surfaces_coeffs.count
+# avg_absorption_1000Hz = (all_surfaces_coeffs.map{|freq| freq["1000Hz"]}.inject(:+)) / all_surfaces_coeffs.count
+# avg_absorption_2000Hz = (all_surfaces_coeffs.map{|freq| freq["2000Hz"]}.inject(:+)) / all_surfaces_coeffs.count
+# avg_absorption_4000Hz = (all_surfaces_coeffs.map{|freq| freq["4000Hz"]}.inject(:+)) / all_surfaces_coeffs.count
