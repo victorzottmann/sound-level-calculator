@@ -4,19 +4,6 @@ module SoundLevel
 
   def self.level_calculation
     system("clear")
-
-    # speech_level = {
-    #   "125Hz": 49.9,
-    #   "250Hz": 54.3,
-    #   "500Hz": 58,
-    #   "1000Hz": 52,
-    #   "2000Hz": 44.8,
-    #   "4000Hz": 38.8
-    # }
-    
-    # speech_level.each_with_index do |(freq, level), i|
-    #   puts "- #{freq}: #{level} dB".colorize(:cyan)
-    # end
   
     puts "\n##### SOUND LEVEL CALCULATOR #####".colorize(:light_yellow)
     puts "\nWelcome to the Sound Level calculator!"
@@ -52,7 +39,7 @@ module SoundLevel
       puts "The average SPL is equal to %.1f dB".colorize(:light_yellow) % [10*Math.log10(total_avg)]
     when 2
       puts "\nA-Weighting Conversion".colorize(:light_yellow)
-      puts "\nPlease input levels for the following octave bands (63Hz - 8000Hz):\n\n"
+      puts "\nPlease input sound levels for the following octave bands (63Hz - 8000Hz):\n\n"
 
       octave_levels = []
 
@@ -105,7 +92,7 @@ module SoundLevel
         end
       end
     when 3
-      system("exit")
+      exit!
     else
       puts "Invalid input!".colorize(:red)
       puts "Only values between 1-3 are accepted."
@@ -116,7 +103,18 @@ module SoundLevel
   end 
 end
 
-
+# speech_level = {
+    #   "125Hz": 49.9,
+    #   "250Hz": 54.3,
+    #   "500Hz": 58,
+    #   "1000Hz": 52,
+    #   "2000Hz": 44.8,
+    #   "4000Hz": 38.8
+    # }
+    
+    # speech_level.each_with_index do |(freq, level), i|
+    #   puts "- #{freq}: #{level} dB".colorize(:cyan)
+    # end
 
 
 
