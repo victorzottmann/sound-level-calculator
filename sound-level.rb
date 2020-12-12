@@ -2,7 +2,7 @@ require 'colorize'
 
 module SoundLevel
 
-  def self.level_calculation
+  def self.level_calculations()
     system("clear")
   
     puts "\n##### SOUND LEVEL CALCULATOR #####".colorize(:light_yellow)

@@ -5,7 +5,7 @@ module ReverbTime
 
   ### Reverb Menu ###
 
-  def self.reverb_calculation()
+  def self.reverb_calculations()
     system ("clear")
 
     ##### Absorption Coefficients #####
