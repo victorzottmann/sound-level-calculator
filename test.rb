@@ -137,7 +137,6 @@ end
 sabine_mid_average = ((sabine_rt["500Hz"] + sabine_rt["1000Hz"]) / 2).truncate(2)
 puts "\nThe Sabine mid-frequency average is: #{sabine_mid_average} seconds"
 
-
 puts "\nThe Eyring reverb times for each octave band are:\n\n"
 eyring_rt = Hash.new
 avg_coeffs.each do |octave, coeff|
@@ -149,8 +148,18 @@ eyring_mid_average = ((eyring_rt["500Hz"] + eyring_rt["1000Hz"]) / 2).truncate(2
 puts "\nThe Eyring mid-frequency average is: #{eyring_mid_average} seconds"
 
 
+# avg_absorption_coeff_125Hz = (total_absorption_125Hz / total_surface_area).truncate(2)
+# avg_absorption_coeff_250Hz = (total_absorption_250Hz / total_surface_area).truncate(2)
+# avg_absorption_coeff_500Hz = (total_absorption_500Hz / total_surface_area).truncate(2)
+# avg_absorption_coeff_1000Hz = (total_absorption_1000Hz / total_surface_area).truncate(2)
+# avg_absorption_coeff_2000Hz = (total_absorption_2000Hz / total_surface_area).truncate(2)
+# avg_absorption_coeff_4000Hz = (total_absorption_4000Hz / total_surface_area).truncate(2)  
 
-
-# puts "Sabine: #{reverb_sabine}"
-# puts "Eyring: #{reverb_eyring}"
-
+# avg_coeffs = {
+#   "125Hz" => avg_absorption_coeff_125Hz,
+#   "250Hz" => avg_absorption_coeff_250Hz,
+#   "500Hz" => avg_absorption_coeff_500Hz,
+#   "1000Hz" => avg_absorption_coeff_1000Hz,
+#   "2000Hz" => avg_absorption_coeff_2000Hz,
+#   "4000Hz" => avg_absorption_coeff_4000Hz
+# }
