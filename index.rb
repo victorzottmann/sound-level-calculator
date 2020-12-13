@@ -1,13 +1,13 @@
 require 'colorize'
 require_relative 'validators'
-require_relative 'general'
+require_relative 'general-calculations'
 require_relative 'sound-level'
 require_relative 'reverb-time'
 
 def intro()
   system("clear")
 
-  include SourceDistance
+  include General
   include SoundLevel
   include ReverbTime
   

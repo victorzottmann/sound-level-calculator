@@ -101,20 +101,6 @@ module SoundLevel
       level_calculation()  
     end   
   end 
+  
 end
-
-# speech_level = {
-    #   "125Hz": 49.9,
-    #   "250Hz": 54.3,
-    #   "500Hz": 58,
-    #   "1000Hz": 52,
-    #   "2000Hz": 44.8,
-    #   "4000Hz": 38.8
-    # }
-    
-    # speech_level.each_with_index do |(freq, level), i|
-    #   puts "- #{freq}: #{level} dB".colorize(:cyan)
-    # end
-
-
 

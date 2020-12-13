@@ -3,8 +3,6 @@ require 'colorize'
 
 module ReverbTime
 
-  ### Reverb Menu ###
-
   def self.reverb_calculations()
     system ("clear")
 
@@ -138,8 +136,6 @@ module ReverbTime
       },
     ]
 
-    total_surface_area = 0.0
-
     floor_coeffs = {}
     ceiling_coeffs = {}
     front_wall_coeffs = {}
@@ -157,6 +153,8 @@ module ReverbTime
     right_wall_absorption = {}
     door_absorption = {}
     window_absorption = {}
+
+    total_surface_area = 0.0
 
     puts "\n##### REVERBERATION TIME CALCULATOR #####".colorize(:light_yellow)
     puts "\nWelcome to the RT calculator!"
@@ -508,24 +506,25 @@ module ReverbTime
     mid_average = ((reverb_octave_bands["500Hz"] + reverb_octave_bands["1000Hz"]) / 2)
     puts "\nThe mid-frequency average (500Hz and 1000Hz) is: %.2f seconds" % [mid_average]
 
-    another_calculation()
+    another_calculation?()
   end
 
   ##### Repeat? #####
 
-  def self.another_calculation()
+  def self.another_calculation?()
     puts "\nWould you like to make another RT calculation? (y/n)".colorize(:light_green)
     try_again = gets.chomp
     case try_again 
     when 'y'
-      reverb_calculation()
+      reverb_calculations()
     when 'n'
       puts "\nSee you later!".colorize(:light_yellow)
       exit!
     else
       puts "\nInvalid input! Only (y/n) are accepted.".colorize(:red)
-      another_calculation()
+      another_calculation?()
     end
   end
+
 end
 
