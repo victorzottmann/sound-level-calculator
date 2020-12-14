@@ -10,7 +10,27 @@ A particular use case of a room acoustics calculator would be for when musicians
 
 ### Functionalities 
 
-As soon as the user load the application, a Welcome window introduces them to all the possible calculations they can perform, as well as with an option to exit the program. Each calculation has its own menu, which thereby introduces the user to what will be displayed and how should they use it.  
+As soon as the user load the application, a Welcome window introduces them to all the possible calculations they can perform, as well as with an option to exit the program. Each calculation has its own menu, which introduces the user to what will be displayed and how should they use it. On the other hand, the main menu simply asks the user what do they want to calculate, as shown in the image below.
+
+<img src="/Users/victor/code/coder-activities/assignments/room-acoustics/images/main-menu.png" alt="main-menu" style="zoom: 50%;" />
+
+In the Sound Level menu, the user is presented with a total of four calculations, and the option to exit the program. The four calculations are the following.
+
+1. **Level Attenuation Over Distance**
+
+   Level attenuation is concerned with how loud the sound source will be at the receiver distance. The sound pressure level (SPL) of the source is usually measured at 1m from it, and for every doubling of distance there will be a reduction of 6 decibels (dB). For example, if the sound pressure level of someone singing is 70 dB at 1m, at 2m the resulting SPL will be 64 dB; at 4m it will be 58 dB, and so on. The formula for calculating this is shown below.
+
+2. **Level Conversion (Sound Power Level to Sound Pressure Level, or Vice-Versa)**
+
+   The difference between sound power level and sound pressure level is that the former is related to the acoustic energy that is emitted from the sound source itself. On the other hand, sound pressure level is essentially what we hear. Another way of thinking about this is with light bulbs. 
+
+3. **Sum and Average of Levels**
+
+   
+
+4. **A-Weighting Conversion**
+
+   
 
 
 
@@ -24,11 +44,11 @@ As soon as the user load the application, a Welcome window introduces them to al
 
   
 
-## Features List - Nice to haves
+## Features List - Future Implementations
 
 - As a user, I would like to know whether the estimated reverberation time of a room is within the recommended values established by the Australian / New Zealand Standard  ***"Acoustics - Recommended design sound levels and reverberation times for building interiors (AS/NZS 2107-2016)"***.
 
-- As a user, I would like to be able to calculate the amount of room modes (frequency resonances), given the dimension of a given room.
+- As a user, I would like to be able to calculate the amount of room modes (frequency resonances), given the dimensions of a room.
 
   
 

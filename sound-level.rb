@@ -2,6 +2,8 @@ require 'colorize'
 
 module SoundLevel
 
+  PI = 3.14
+
   def self.level_calculations()
     system("clear")
   
@@ -26,6 +28,7 @@ module SoundLevel
     when 4
       a_weighting()
     when 5
+      puts "\nSee you later!".colorize(:light_yellow)
       exit!
     else
       puts "Invalid input!".colorize(:red)
@@ -63,10 +66,7 @@ module SoundLevel
         puts "\nSee you later!".colorize(:light_yellow)
         exit!
       else
-        puts "\nInvalid input!".colorize(:red)
-        puts "Only (y/n) are accepted."
-        puts "Press any key and hit Enter to continue."
-        gets
+        yn_invalid()
       end
     end
   end
@@ -182,21 +182,34 @@ module SoundLevel
     end
 
     while true
-      puts "\nWould you like to make another calculation? (y/n)".colorize(:light_green)
+      puts "\nWould you like to make another A-Weighting conversion? (y/n)"
       choice = gets.chomp
-      if choice == 'y'
-        level_calculation()
-      elsif choice == 'n'
-        puts "\nSee you later!".colorize(:light_yellow)
-        break
-        system("exit")
+      case choice
+      when 'y'
+        a_weighting()
+      when 'n'
+        puts "\nWould you like to go back to the Sound Level menu? (y/n)"
+        go_back = gets.chomp
+        case go_back
+        when 'y'
+          level_calculations()
+        when 'n'
+          puts "\nSee you later!".colorize(:light_yellow)
+          exit!
+        else
+          yn_invalid()
+        end
       else
-        puts "\nInvalid input!".colorize(:red)
-        puts "Only (y/n) are accepted"
-        puts "Press any key to continue"
-        gets
+        yn_invalid()
       end
     end
+  end
+
+  def yn_invalid()
+    puts "\nInvalid input!".colorize(:red)
+    puts "Only (y/n) are accepted"
+    puts "Press any key to continue"
+    gets
   end
 
   def self.power_to_pressure_level(power_level, distance)

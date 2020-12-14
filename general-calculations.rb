@@ -4,8 +4,6 @@ require_relative 'validators'
 
 module General
 
-  PI = 3.14
-
   def self.general_calculations()
     system("clear")
 
@@ -24,8 +22,8 @@ module General
       exit!
     else
       puts "\nInvalid input!".colorize(:red)
-      puts "Only values between 1-2 are accepted"
-      puts "Hit Enter to continue"
+      puts "Only values between 1-2 are accepted."
+      puts "Press any key to continue."
       gets
       general_calculations()
     end

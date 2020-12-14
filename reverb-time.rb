@@ -1,5 +1,6 @@
 
 require 'colorize'
+require_relative 'validators'
 
 module ReverbTime
 
@@ -159,28 +160,85 @@ module ReverbTime
     puts "\n##### REVERBERATION TIME CALCULATOR #####".colorize(:light_yellow)
     puts "\nWelcome to the RT calculator!"
     puts "\nThis calculator displays the Reverberation Time given the dimensions and total absorption of the room."
+    puts "IMPORTANT: It is assumed that the room is rectangular.".colorize(:light_yellow)
 
-    puts "\nBefore we proceed, I need to know some of the properties of the room.".colorize(:light_yellow)
-    puts "\nPlease input the following SURFACE AREAS (m2):"
+    puts "\nBefore we proceed, I need to know some of the properties of the room."
+    puts "\nPlease input the following SURFACE AREAS (m2):\n\n"
+    
+    proceed = false
 
-    print "\nFloor / Ceiling: ".colorize(:light_green)
-    ceiling_surface_area = floor_surface_area = gets.chomp.to_f
+    while !proceed
+      print "Floor / Ceiling: ".colorize(:light_green)
+      ceiling_surface_area = floor_surface_area = gets.chomp.to_f
+      valid_area = Validators.validate_surface_area(floor_surface_area)
+      if !valid_area
+        repeat_input()
+        !proceed
+      else
+        break
+      end
+    end
 
-    print "\nFront / Back walls: ".colorize(:light_green)
-    back_wall_surface_area = front_wall_surface_area = gets.chomp.to_f
+    while !proceed
+      print "\nFront / Back walls: ".colorize(:light_green)
+      back_wall_surface_area = front_wall_surface_area = gets.chomp.to_f
+      valid_area = Validators.validate_surface_area(front_wall_surface_area)
+      if !valid_area
+        repeat_input()
+        !proceed
+      else
+        break
+      end
+    end
 
-    print "\nLeft / Right walls: ".colorize(:light_green)
-    right_wall_surface_area = left_wall_surface_area = gets.chomp.to_f
+    while !proceed
+      print "\nLeft / Right walls: ".colorize(:light_green)
+      right_wall_surface_area = left_wall_surface_area = gets.chomp.to_f
+      valid_area = Validators.validate_surface_area(left_wall_surface_area)
+      if !valid_area
+        repeat_input()
+        !proceed
+      else
+        break
+      end
+    end
 
-    print "\nDoors: ".colorize(:light_green)
-    door_surface_area = gets.chomp.to_f
+    while !proceed
+      print "\nDoors: ".colorize(:light_green)
+      door_surface_area = gets.chomp.to_f
+      valid_area = Validators.validate_surface_area(door_surface_area)
+      if !valid_area
+        repeat_input()
+        !proceed
+      else
+        break
+      end
+    end
 
-    print "\nWindows: ".colorize(:light_green)
-    window_surface_area = gets.chomp.to_f
+    while !proceed
+      print "\nWindows: ".colorize(:light_green)
+      window_surface_area = gets.chomp.to_f
+      valid_area = Validators.validate_surface_area(window_surface_area)
+      if !valid_area
+        repeat_input()
+        !proceed
+      else
+        break
+      end
+    end
 
-    print "\nVolume of the room (m3): ".colorize(:light_green)
-    room_volume = gets.chomp.to_f
-
+    while !proceed
+      print "\nVolume of the room (m3): ".colorize(:light_green)
+      room_volume = gets.chomp.to_f
+      valid_area = Validators.validate_surface_area(floor_surface_area)
+      if !valid_area
+        repeat_input()
+        !proceed
+      else
+        break
+      end
+    end
+   
     puts "\nFantastic! Now let's move on to the materials covering all the surfaces".colorize(:light_yellow)
     puts "\nPlease select one of the following materials (1-2), then hit Enter to continue:"
 
@@ -211,10 +269,7 @@ module ReverbTime
         end
         break
       else
-        puts "\nWARNINNG: Invalid input!".colorize(:red)
-        puts "Only 1 and 2 are accepted."
-        puts "\nHit Enter to continue"
-        gets
+        invalid_input()
       end
     end
   
@@ -245,10 +300,7 @@ module ReverbTime
         end
         break
       else
-        puts "\nWARNINNG: Invalid input!".colorize(:red)
-        puts "Only 1 and 2 are accepted."
-        puts "\nHit Enter to continue"
-        gets
+        invalid_input()
       end
     end
 
@@ -279,10 +331,7 @@ module ReverbTime
         end
         break
       else
-        puts "\nWARNINNG: Invalid input!".colorize(:red)
-        puts "Only 1 and 2 are accepted."
-        puts "\nHit Enter to continue"
-        gets
+        invalid_input()
       end
     end
 
@@ -313,10 +362,7 @@ module ReverbTime
         end
         break
       else
-        puts "\nWARNINNG: Invalid input!".colorize(:red)
-        puts "Only 1 and 2 are accepted."
-        puts "\nHit Enter to continue"
-        gets
+        invalid_input()
       end
     end
 
@@ -347,10 +393,7 @@ module ReverbTime
         end
         break
       else
-        puts "\nWARNINNG: Invalid input!".colorize(:red)
-        puts "Only 1 and 2 are accepted."
-        puts "\nHit Enter to continue"
-        gets
+        invalid_input()
       end
     end
 
@@ -381,10 +424,7 @@ module ReverbTime
         end
         break
       else
-        puts "\nWARNINNG: Invalid input!".colorize(:red)
-        puts "Only 1 and 2 are accepted."
-        puts "\nHit Enter to continue"
-        gets
+        invalid_input()
       end
     end
 
@@ -415,10 +455,7 @@ module ReverbTime
         end
         break
       else
-        puts "\nWARNINNG: Invalid input!".colorize(:red)
-        puts "Only 1 and 2 are accepted."
-        puts "\nHit Enter to continue"
-        gets
+        invalid_input()
       end
     end
 
@@ -449,10 +486,7 @@ module ReverbTime
         end
         break
       else
-        puts "\nWARNINNG: Invalid input!".colorize(:red)
-        puts "Only 1 and 2 are accepted."
-        puts "\nHit Enter to continue"
-        gets
+        invalid_input()
       end
     end
 
@@ -509,8 +543,23 @@ module ReverbTime
     another_calculation?()
   end
 
-  ##### Repeat? #####
+  
+  ##### Input Verifications #####
+  def self.invalid_input()
+    puts "\nInvalid input!".colorize(:red)
+    puts "Only 1 and 2 are accepted."
+    puts "Press any key to continue"
+    gets
+  end
 
+  def self.repeat_input()
+    puts "\nInvalid input!".colorize(:red)
+    puts "Only numbers above 0 are accepted"
+    puts "Press any key to continue"
+    gets
+  end
+
+  ##### Repeat? #####
   def self.another_calculation?()
     puts "\nWould you like to make another RT calculation? (y/n)".colorize(:light_green)
     try_again = gets.chomp
