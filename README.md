@@ -12,7 +12,7 @@ A particular use case of a room acoustics calculator would be for when musicians
 
 As soon as the user load the application, a Welcome window introduces them to all the possible calculations they can perform, as well as with an option to exit the program. Each calculation has its own menu, which introduces the user to what will be displayed and how should they use it. On the other hand, the main menu simply asks the user what do they want to calculate, as shown in the image below.
 
-<img src="/Users/victor/code/coder-activities/assignments/room-acoustics/images/main-menu.png" alt="main-menu" style="zoom: 50%;" />
+<img src="images/main-menu.png" alt="main-menu" style="zoom: 50%;" />
 
 In the Sound Level menu, the user is presented with a total of four calculations, and the option to exit the program. The four calculations are the following.
 
