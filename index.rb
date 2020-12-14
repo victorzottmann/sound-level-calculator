@@ -14,7 +14,7 @@ def intro()
   puts "\nHello! Welcome to this simple room acoustics calculator.".colorize(:light_yellow)
   puts "\nWhat would you like to calculate? (Select 1-4)"
   puts "\n1. General Calculations".colorize(:light_green)
-  puts "2. Sound Pressure Level".colorize(:light_green)
+  puts "2. Sound Level".colorize(:light_green)
   puts "3. Reverberation Time (RT)".colorize(:light_green)
   puts "4. Exit".colorize(:light_green)
   

@@ -158,9 +158,9 @@ module ReverbTime
 
     puts "\n##### REVERBERATION TIME CALCULATOR #####".colorize(:light_yellow)
     puts "\nWelcome to the RT calculator!"
-    puts "\nThis calculator displays the RT values for both the Sabine and Norris-Eyring formulas."
+    puts "\nThis calculator displays the Reverberation Time given the dimensions and total absorption of the room."
 
-    puts "\nBefore we proceed, I need to know some of the room properties.".colorize(:light_yellow)
+    puts "\nBefore we proceed, I need to know some of the properties of the room.".colorize(:light_yellow)
     puts "\nPlease input the following SURFACE AREAS (m2):"
 
     print "\nFloor / Ceiling: ".colorize(:light_green)
