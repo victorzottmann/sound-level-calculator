@@ -10,7 +10,7 @@ def intro()
   include General
   include SoundLevel
   include ReverbTime
-  
+
   puts "\nHello! Welcome to this simple room acoustics calculator.".colorize(:light_yellow)
   puts "\nWhat would you like to calculate? (Select 1-3, or 4 to exit)"
   puts "\n1. General Calculations".colorize(:light_green)
@@ -41,7 +41,6 @@ def intro()
       intro()
     end
   end
-
 end
 
 intro()

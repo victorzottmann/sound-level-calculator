@@ -1,5 +1,6 @@
 
 require 'colorize'
+require 'tty-box'
 require_relative 'validators'
 
 module ReverbTime
@@ -522,9 +523,9 @@ module ReverbTime
 
     puts "\nThe total absorption per octave band is:\n\n"
     net_absorption = 0.0
-    total_absorption.each do |octave, abs|
-      puts "- #{octave}: #{abs.truncate(2)} m2".colorize(:cyan)
-      net_absorption += abs
+    total_absorption.each do |octave, absorption|
+      puts "- #{octave}: #{absorption.truncate(2)} m2".colorize(:cyan)
+      net_absorption += absorption
     end
     puts "\nThe total absortion is: %.2f m2" % [net_absorption]
 
@@ -532,8 +533,8 @@ module ReverbTime
 
     puts "\nReverb times for each octave band:\n\n"
     reverb_octave_bands = Hash.new
-    total_absorption.each do |octave, abs|
-      reverb_time = ((0.16 * room_volume) / abs).truncate(2)
+    total_absorption.each do |octave, absorption|
+      reverb_time = reverb_time(room_volume, absorption)
       puts "- #{octave}: #{reverb_time} seconds".colorize(:cyan)
       reverb_octave_bands[octave] = reverb_time
     end
@@ -543,7 +544,12 @@ module ReverbTime
     another_calculation?()
   end
 
-  
+  ##### Methods ####
+  def reverb_time(room_volume, absorption)
+    rt = ((0.16 * room_volume) / absorption).truncate(2)
+    return rt
+  end
+
   ##### Input Verifications #####
   def self.invalid_input()
     puts "\nInvalid input!".colorize(:red)
@@ -576,4 +582,3 @@ module ReverbTime
   end
 
 end
-
