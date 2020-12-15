@@ -1,6 +1,7 @@
 
 require 'colorize'
 require 'tty-box'
+require 'tty-prompt'
 require_relative 'validators'
 
 module ReverbTime
@@ -8,8 +9,9 @@ module ReverbTime
   def self.reverb_calculations()
     system ("clear")
 
+    prompt = TTY::Prompt.new
+
     ##### Absorption Coefficients #####
-  
     absorption = [
     
       ## Floor
@@ -158,10 +160,14 @@ module ReverbTime
 
     total_surface_area = 0.0
 
+    puts "\n================================================="
     puts "\n##### REVERBERATION TIME CALCULATOR #####".colorize(:light_yellow)
     puts "\nWelcome to the RT calculator!"
-    puts "\nThis calculator displays the Reverberation Time given the dimensions and total absorption of the room."
-    puts "IMPORTANT: It is assumed that the room is rectangular.".colorize(:light_yellow)
+    puts "\nThis calculator displays the Reverberation Time given the dimensions and total absorption of the room.\n\n\n"
+
+    important = TTY::Box.frame("It is assumed that the room is rectangular.", width: 30, height: 6, border: :thick, align: :center, padding: [1,0,0,1], title: {top_left: " IMPORTANT "}).colorize(:light_yellow)
+
+    puts important
 
     puts "\nBefore we proceed, I need to know some of the properties of the room."
     puts "\nPlease input the following SURFACE AREAS (m2):\n\n"
@@ -169,11 +175,11 @@ module ReverbTime
     proceed = false
 
     while !proceed
-      print "Floor / Ceiling: ".colorize(:light_green)
+      puts "Floor / Ceiling: ".colorize(:green)
       ceiling_surface_area = floor_surface_area = gets.chomp.to_f
       valid_area = Validators.validate_surface_area(floor_surface_area)
       if !valid_area
-        repeat_input()
+        invalid_input()
         !proceed
       else
         break
@@ -181,11 +187,11 @@ module ReverbTime
     end
 
     while !proceed
-      print "\nFront / Back walls: ".colorize(:light_green)
+      puts "\nFront / Back walls: ".colorize(:green)
       back_wall_surface_area = front_wall_surface_area = gets.chomp.to_f
       valid_area = Validators.validate_surface_area(front_wall_surface_area)
       if !valid_area
-        repeat_input()
+        invalid_input()
         !proceed
       else
         break
@@ -193,11 +199,11 @@ module ReverbTime
     end
 
     while !proceed
-      print "\nLeft / Right walls: ".colorize(:light_green)
+      puts "\nLeft / Right walls: ".colorize(:green)
       right_wall_surface_area = left_wall_surface_area = gets.chomp.to_f
       valid_area = Validators.validate_surface_area(left_wall_surface_area)
       if !valid_area
-        repeat_input()
+        invalid_input()
         !proceed
       else
         break
@@ -205,11 +211,11 @@ module ReverbTime
     end
 
     while !proceed
-      print "\nDoors: ".colorize(:light_green)
+      puts "\nDoors: ".colorize(:green)
       door_surface_area = gets.chomp.to_f
       valid_area = Validators.validate_surface_area(door_surface_area)
       if !valid_area
-        repeat_input()
+        invalid_input()
         !proceed
       else
         break
@@ -217,23 +223,25 @@ module ReverbTime
     end
 
     while !proceed
-      print "\nWindows: ".colorize(:light_green)
+      puts "\nWindows: ".colorize(:green)
       window_surface_area = gets.chomp.to_f
       valid_area = Validators.validate_surface_area(window_surface_area)
       if !valid_area
-        repeat_input()
+        invalid_input()
         !proceed
       else
         break
       end
     end
 
+    puts "\nWhat about the volume of the room (m3)?"
+
     while !proceed
-      print "\nVolume of the room (m3): ".colorize(:light_green)
+      puts "\nVolume: ".colorize(:green)
       room_volume = gets.chomp.to_f
       valid_area = Validators.validate_surface_area(floor_surface_area)
       if !valid_area
-        repeat_input()
+        invalid_input()
         !proceed
       else
         break
@@ -245,8 +253,8 @@ module ReverbTime
 
     while true
       puts "\nFloor:" 
-      puts "\n1. Thin carpet on concrete".colorize(:light_green)
-      puts "2. Wood on joists".colorize(:light_green)
+      puts "\n1. Thin carpet on concrete".colorize(:green)
+      puts "2. Wood on joists".colorize(:green)
       floor_type = gets.chomp.to_i
       case floor_type
       when 1
@@ -270,14 +278,15 @@ module ReverbTime
         end
         break
       else
-        invalid_input()
+        invalid_material()
       end
     end
   
     while true
+    
       puts "\nCeiling:"
-      puts "\n1. Mineral wool tiles with 180mm of airspace".colorize(:light_green)
-      puts "2. Gypsum plaster titles".colorize(:light_green)
+      puts "\n1. Mineral wool tiles with 180mm of airspace".colorize(:green)
+      puts "2. Gypsum plaster titles".colorize(:green)
       ceiling_type = gets.chomp.to_i
       case ceiling_type
       when 1
@@ -301,14 +310,14 @@ module ReverbTime
         end
         break
       else
-        invalid_input()
+        invalid_material()
       end
     end
 
     while true
       puts "\nFront wall:"
-      puts "\n1. Brickwork".colorize(:light_green)
-      puts "2. Plasterboard".colorize(:light_green)
+      puts "\n1. Brickwork".colorize(:green)
+      puts "2. Plasterboard".colorize(:green)
       front_wall_type = gets.chomp.to_i
       case front_wall_type
       when 1
@@ -332,14 +341,14 @@ module ReverbTime
         end
         break
       else
-        invalid_input()
+        invalid_material()
       end
     end
 
     while true
       puts "\nBack wall:"
-      puts "\n1. Brickwork".colorize(:light_green)
-      puts "2. Plasterboard".colorize(:light_green)
+      puts "\n1. Brickwork".colorize(:green)
+      puts "2. Plasterboard".colorize(:green)
       back_wall_type = gets.chomp.to_i
       case back_wall_type
       when 1
@@ -363,14 +372,14 @@ module ReverbTime
         end
         break
       else
-        invalid_input()
+        invalid_material()
       end
     end
 
     while true
       puts "\nLeft wall:"
-      puts "\n1. Brickwork".colorize(:light_green)
-      puts "2. Plasterboard".colorize(:light_green)
+      puts "\n1. Brickwork".colorize(:green)
+      puts "2. Plasterboard".colorize(:green)
       left_wall_type = gets.chomp.to_i
       case left_wall_type
       when 1
@@ -394,14 +403,14 @@ module ReverbTime
         end
         break
       else
-        invalid_input()
+        invalid_material()
       end
     end
 
     while true
       puts "\nRight wall:"
-      puts "\n1. Brickwork".colorize(:light_green)
-      puts "2. Plasterboard".colorize(:light_green)
+      puts "\n1. Brickwork".colorize(:green)
+      puts "2. Plasterboard".colorize(:green)
       right_wall_type = gets.chomp.to_i
       case right_wall_type
       when 1
@@ -425,14 +434,14 @@ module ReverbTime
         end
         break
       else
-        invalid_input()
+        invalid_material()
       end
     end
 
     while true
       puts "\nDoors:"
-      puts "\n1. Wooden with a hollow core".colorize(:light_green)
-      puts "2. Solid timber".colorize(:light_green)
+      puts "\n1. Wooden with a hollow core".colorize(:green)
+      puts "2. Solid timber".colorize(:green)
       door_type = gets.chomp.to_i
       case door_type
       when 1
@@ -456,14 +465,14 @@ module ReverbTime
         end
         break
       else
-        invalid_input()
+        invalid_material()
       end
     end
 
     while true
       puts "\nWindows:"
-      puts "\n1. 4mm glass".colorize(:light_green)
-      puts "2. 6mm glass".colorize(:light_green)
+      puts "\n1. 4mm glass".colorize(:green)
+      puts "2. 6mm glass".colorize(:green)
       window_type = gets.chomp.to_i
       case window_type
       when 1
@@ -487,9 +496,11 @@ module ReverbTime
         end
         break
       else
-        invalid_input()
+        invalid_material()
       end
     end
+
+    total_surface_area = floor_surface_area + ceiling_surface_area + front_wall_surface_area + back_wall_surface_area + left_wall_surface_area + right_wall_surface_area + door_surface_area + window_surface_area
 
     all_surfaces_coeffs = Array.new
     all_surfaces_coeffs.push(
@@ -519,55 +530,93 @@ module ReverbTime
       "4000Hz" => total_absorption_4000Hz
     }
 
-    puts "\nABSORPTION VALUES:".colorize(:light_yellow)
+    avg_absorption_coeff_125Hz = (total_absorption_125Hz / total_surface_area).truncate(2)
+    avg_absorption_coeff_250Hz = (total_absorption_250Hz / total_surface_area).truncate(2)
+    avg_absorption_coeff_500Hz = (total_absorption_500Hz / total_surface_area).truncate(2)
+    avg_absorption_coeff_1000Hz = (total_absorption_1000Hz / total_surface_area).truncate(2)
+    avg_absorption_coeff_2000Hz = (total_absorption_2000Hz / total_surface_area).truncate(2)
+    avg_absorption_coeff_4000Hz = (total_absorption_4000Hz / total_surface_area).truncate(2)
 
+    avg_absorption_coeffs = {
+      "125Hz" => avg_absorption_coeff_125Hz,
+      "250Hz" => avg_absorption_coeff_250Hz,
+      "500Hz" => avg_absorption_coeff_500Hz,
+      "1000Hz" => avg_absorption_coeff_1000Hz,
+      "2000Hz" => avg_absorption_coeff_2000Hz,
+      "4000Hz" => avg_absorption_coeff_4000Hz
+    }
+
+    puts "\nABSORPTION VALUES:".colorize(:light_yellow)
     puts "\nThe total absorption per octave band is:\n\n"
     net_absorption = 0.0
     total_absorption.each do |octave, absorption|
       puts "- #{octave}: #{absorption.truncate(2)} m2".colorize(:cyan)
       net_absorption += absorption
     end
-    puts "\nThe total absortion is: %.2f m2" % [net_absorption]
+    puts "\nThe net absortion of all octave bands is: %.2f m2" % [net_absorption]
 
-    puts "\nREVERB TIME VALUES:".colorize(:light_yellow)
+    puts "\n============================="
 
-    puts "\nReverb times for each octave band:\n\n"
-    reverb_octave_bands = Hash.new
+    puts "\nSABINE REVERB TIME VALUES:".colorize(:light_yellow)
+    puts "\nThe Sabine reverb times for each octave band are:\n\n"
+    sabine_octave_bands = Hash.new
     total_absorption.each do |octave, absorption|
-      reverb_time = reverb_time(room_volume, absorption)
-      puts "- #{octave}: #{reverb_time} seconds".colorize(:cyan)
-      reverb_octave_bands[octave] = reverb_time
+      reverb_time_sabine = sabine(room_volume, absorption)
+      puts "- #{octave}: #{reverb_time_sabine} seconds".colorize(:cyan)
+      sabine_octave_bands[octave] = reverb_time_sabine
     end
-    mid_average = ((reverb_octave_bands["500Hz"] + reverb_octave_bands["1000Hz"]) / 2)
-    puts "\nThe mid-frequency average (500Hz and 1000Hz) is: %.2f seconds" % [mid_average]
+    sabine_mid_average = ((sabine_octave_bands["500Hz"] + sabine_octave_bands["1000Hz"]) / 2)
+    puts "\nThe mid-frequency average (500Hz and 1000Hz) is: %.2f seconds" % [sabine_mid_average]
+
+    puts "\n============================="
+
+    puts "\nNORRIS-EYRING REVERB TIME VALUES:".colorize(:light_yellow)
+    puts "\nThe Norris-Eyring reverb times for each octave band are:\n\n"
+    eyring_octave_bands = Hash.new
+    avg_absorption_coeffs.each do |octave, coeff|
+      reverb_time_eyring = eyring(room_volume, total_surface_area, coeff)
+      puts "- #{octave}: #{reverb_time_eyring} seconds".colorize(:cyan)
+      eyring_octave_bands[octave] = reverb_time_eyring
+    end
+    eyring_mid_average = ((eyring_octave_bands["500Hz"] + eyring_octave_bands["1000Hz"]) / 2).truncate(2)
+    puts "\nThe mid-frequency average (500Hz and 1000Hz) is: %.2f seconds" % [eyring_mid_average]
+
+    puts "\n============================="
 
     another_calculation?()
   end
 
-  ##### Methods ####
-  def reverb_time(room_volume, absorption)
-    rt = ((0.16 * room_volume) / absorption).truncate(2)
-    return rt
+  ##### Reverb Time Equations ####
+  def self.sabine(room_volume, absorption)
+    reverb_sabine = ((0.16 * room_volume) / absorption).truncate(2)
+    return reverb_sabine
+  end
+
+  def self.eyring(room_volume, total_surface_area, avg_absorption_coeff)
+    reverb_eyring = ((0.16 * room_volume) / (-2.3 * total_surface_area * Math.log10(1 - avg_absorption_coeff))).truncate(2)
+    return reverb_eyring
   end
 
   ##### Input Verifications #####
-  def self.invalid_input()
-    puts "\nInvalid input!".colorize(:red)
-    puts "Only 1 and 2 are accepted."
+  def self.invalid_material()
+    box = TTY::Box.frame("Invalid option! \nOnly 1 and 2 are accepted.".colorize(:red), width: 30, height: 6, border: :thick, align: :center, padding: [1,0,0,0], title: {top_left: " x ERROR "}).colorize(:red)
+    puts
+    puts box
     puts "Press any key to continue"
     gets
   end
 
-  def self.repeat_input()
-    puts "\nInvalid input!".colorize(:red)
-    puts "Only numbers above 0 are accepted"
+  def self.invalid_input()
+    box = TTY::Box.frame("Invalid input! \nOnly numbers above 0 are accepted.".colorize(:red), width: 30, height: 7, border: :thick, align: :center, padding: [1,0,1,1], title: {top_left: " x ERROR "}).colorize(:red)
+    puts
+    puts box
     puts "Press any key to continue"
     gets
   end
 
   ##### Repeat? #####
   def self.another_calculation?()
-    puts "\nWould you like to make another RT calculation? (y/n)".colorize(:light_green)
+    puts "\nWould you like to make another RT calculation? (y/n)".colorize(:green)
     try_again = gets.chomp
     case try_again 
     when 'y'
@@ -576,7 +625,7 @@ module ReverbTime
       puts "\nSee you later!".colorize(:light_yellow)
       exit!
     else
-      puts "\nInvalid input! Only (y/n) are accepted.".colorize(:red)
+      Validators.invalid_yes_no()
       another_calculation?()
     end
   end
