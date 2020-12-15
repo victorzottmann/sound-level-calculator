@@ -1,45 +1,35 @@
 require 'colorize'
-require_relative 'validators'
-require_relative 'general-calculations'
-require_relative 'sound-level'
-require_relative 'reverb-time'
-
-def intro()
+require 'tty-prompt'
+require_relative 'src/general-calculations'
+require_relative 'src/sound-level'
+require_relative 'src/reverb-time'
+  
+def self.intro()
   system("clear")
 
   include General
   include SoundLevel
   include ReverbTime
 
-  puts "\nHello! Welcome to this simple room acoustics calculator.".colorize(:light_yellow)
-  puts "\nWhat would you like to calculate? (Select 1-3, or 4 to exit)"
-  puts "\n1. General Calculations".colorize(:light_green)
-  puts "2. Sound Level".colorize(:light_green)
-  puts "3. Reverberation Time (RT)".colorize(:light_green)
-  puts "4. Exit".colorize(:light_green)
-  
-  input = gets.chomp.to_i
-  valid_input = Validators.validate_input(input)
+  prompt = TTY::Prompt.new
+
+  puts "\nHello! Welcome to this simple acoustics calculator.".colorize(:light_yellow)
+
+  options = ["General Calculations", "Sound Level", "Reverberation Time (RT)", "Exit"]
+  input = prompt.select("\nWhat would you like to calculate?\n", options)
   case input
-  when 1
-    # General Calculations
+  when "General Calculations"
     General.general_calculations()
-  when 2
-    # Sound level
+
+  when "Sound Level"
     SoundLevel.level_calculations()
-  when 3
-    # Reverberation Time
+
+  when "Reverberation Time (RT)"
     ReverbTime.reverb_calculations()
-  when 4
+
+  when "Exit"
     puts "\nSee you later!".colorize(:light_yellow)
     exit!
-  else
-    if !valid_input
-      puts "\nInvalid input".colorize(:red)
-      puts "Hit Enter to continue"
-      gets
-      intro()
-    end
   end
 end
 
