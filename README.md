@@ -50,6 +50,8 @@ In the Sound Level menu, the user is presented with a total of four calculations
 
 - As a user, I would like to be able to calculate the amount of room modes (frequency resonances), given the dimensions of a room.
 
+- As a user, I would like to be able to calculate the transmission loss between rooms, as well as between outdoors and indoors spaces. 
+
   
 
 ## User Experience Details
@@ -64,14 +66,17 @@ In the Sound Level menu, the user is presented with a total of four calculations
 
 - Ruby
 - Colorize (Ruby Gem)
+- TTY-Box (Ruby Gem)
 - TTY-Prompt (Ruby Gem)
-- RSpec (Ruby Gem)
+- Rspec (Ruby Gem)
 
 #### To install and run:
 
 Installing the Gems:
 
 - `$ gem install colorize`
+
+- `$ gem install tty-box`
 
 - `$ gem install tty-prompt`
 
