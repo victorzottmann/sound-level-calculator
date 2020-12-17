@@ -45,6 +45,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler (~> 2.1.4)
   colorize (~> 0.8.1)
   rspec (~> 3.10)
   tty-box (~> 0.6.0)

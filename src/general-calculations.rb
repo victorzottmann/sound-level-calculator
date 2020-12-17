@@ -13,13 +13,11 @@ module General
     puts "\n##### GENERAL CALCULATIONS #####".colorize(:light_yellow)
     puts "\nWelcome to General Calculations!"
 
-    options = ["Speed of Sound", "Main Menu", "Exit"]
+    options = ["Speed of Sound", "Exit"]
     input = prompt.select("\nWhat would you like to calculate?\n", options)
     case input 
     when "Speed of Sound"
       speed_of_sound()
-    when "Main Menu"
-
     when "Exit"
       puts "\nSee you later!".colorize(:light_yellow)
       exit!
