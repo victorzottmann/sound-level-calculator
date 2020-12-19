@@ -7,7 +7,7 @@ module Validators
     box = TTY::Box.frame("Invalid input! \nOnly (y/n) are accepted.", width: 30, height: 6, border: :thick, align: :center, padding: [1,0,0,0], title: {top_left: " x ERROR "}).colorize(:red)
     puts
     puts box
-    puts "Press any key to continue"
+    puts "Press any key and Enter to continue"
     gets
   end
 
@@ -20,9 +20,9 @@ module Validators
     end
   end
 
-  def self.validate_surface_area(area)
-    surface_area = area.to_f
-    if surface_area > 0
+  def self.validate_room_dimensions(dimension)
+    dimension_number = dimension.to_f
+    if dimension_number > 0
       return true
     else
       return false
@@ -37,4 +37,21 @@ module Validators
       return false
     end
   end
+
+  def self.invalid_material_error()
+    box = TTY::Box.frame("Invalid option! \nOnly 1 or 2 are accepted.".colorize(:red), width: 30, height: 6, border: :thick, align: :center, padding: [1,0,0,0], title: {top_left: " x ERROR "}).colorize(:red)
+    puts
+    puts box
+    puts "Press any key and Enter to continue"
+    gets
+  end
+
+  def self.invalid_number_error()
+    box = TTY::Box.frame("Invalid input! \nOnly numbers above 0 are accepted.".colorize(:red), width: 30, height: 7, border: :thick, align: :center, padding: [1,0,1,1], title: {top_left: " x ERROR "}).colorize(:red)
+    puts
+    puts box
+    puts "Press any key and Enter to continue"
+    gets
+  end
+
 end
