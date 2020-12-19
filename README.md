@@ -228,9 +228,9 @@ Where `r` is the distance between the source and the receiver, and `r_reference`
 
 ### Reverberation Time
 
-Reverberation time is the amount of time the level of a sound source takes to decay 60 dB. Barron(2009) illustrates developed a clear graph to illustrate this (apologies for it being out of focus -- it was the best I could find). 
+Reverberation time is the amount of time the level of a sound source takes to decay 60 dB. The image below (NTI Audio, n.d.) demonstrates an example.
 
-<img src="images/screenshots/reverb-time.png" alt="Screen Shot 2020-12-17 at 10.30.55 am" style="zoom: 33%;" />
+<img src="images/screenshots/reverb-time.jpg" alt="Screen Shot 2020-12-17 at 10.30.55 am"  />
 
 The difference between a reverberant room and one that does not have much reverb (or none for the matter) is that the latter would contain more absorption. Hence, it could be argued that reverberation time is inversely proportional to absorption. Take the following two images for example. The first one, taken inside an empty living room, is comprised of hard surfaces, such as windows and a very reflective floor. When surfaces are flat, stiff and not porous, sound would not be absorbed by them, but rather the waves would reflected between them, thus building up sound and resulting in reverberation. Examples are garages, bathrooms, corridors, and hallways. 
 
@@ -546,9 +546,9 @@ Running the program:
 
 ## References
 
-Barron, M. (2009). Auditorium Acoustics and Architectural Design. London: Spon Press
-
 NTI Audio. (n.d.). Frequency Weightings for Sound Level Measurements. Retrieved from https://www.nti-audio.com/en/support/know-how/frequency-weightings-for-sound-level-measurements
+
+NTI Audio. (n.d.). Reverberation Time (RT60) Measurement. Retrieved from https://www.nti-audio.com/en/applications/room-building-acoustics/reverberation-time-rt60-measurement
 
 
 
