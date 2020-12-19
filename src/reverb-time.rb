@@ -32,7 +32,15 @@ module ReverbTime
     door_absorption = {}
     window_absorption = {}
 
-    total_surface_area = 0.0
+    floor_surface_area = 0.0
+    ceiling_surface_area = 0.0
+    front_wall_surface_area = 0.0
+    back_wall_surface_area = 0.0
+    left_wall_surface_area = 0.0
+    door_surface_area = 0.0
+    window_surface_area = 0.0
+
+    total_surface_area = 0.0  
 
     puts "\n================================================="
     puts "\n##### REVERBERATION TIME CALCULATOR #####".colorize(:light_yellow)
@@ -50,9 +58,9 @@ module ReverbTime
     while !proceed
       puts "Floor / Ceiling: ".colorize(:green)
       ceiling_surface_area = floor_surface_area = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(floor_surface_area)
+      valid_area = Validators.validate_room_dimensions(floor_surface_area)
       if !valid_area
-        invalid_number_error()
+        Validators.invalid_number_error()
         !proceed
       else
         break
@@ -62,9 +70,9 @@ module ReverbTime
     while !proceed
       puts "\nFront / Back walls: ".colorize(:green)
       back_wall_surface_area = front_wall_surface_area = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(front_wall_surface_area)
+      valid_area = Validators.validate_room_dimensions(front_wall_surface_area)
       if !valid_area
-        invalid_number_error()
+        Validators.invalid_number_error()
         !proceed
       else
         break
@@ -74,9 +82,9 @@ module ReverbTime
     while !proceed
       puts "\nLeft / Right walls: ".colorize(:green)
       right_wall_surface_area = left_wall_surface_area = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(left_wall_surface_area)
+      valid_area = Validators.validate_room_dimensions(left_wall_surface_area)
       if !valid_area
-        invalid_number_error()
+        Validators.invalid_number_error()
         !proceed
       else
         break
@@ -86,7 +94,7 @@ module ReverbTime
     while !proceed
       puts "\nDoors: ".colorize(:green)
       door_surface_area = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(door_surface_area)
+      valid_area = Validators.validate_room_dimensions(door_surface_area)
       if !valid_area
         invalid_number_error()
         !proceed
@@ -98,9 +106,9 @@ module ReverbTime
     while !proceed
       puts "\nWindows: ".colorize(:green)
       window_surface_area = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(window_surface_area)
+      valid_area = Validators.validate_room_dimensions(window_surface_area)
       if !valid_area
-        invalid_number_error()
+        Validators.invalid_number_error()
         !proceed
       else
         break
@@ -112,9 +120,9 @@ module ReverbTime
     while !proceed
       puts "\nVolume: ".colorize(:green)
       room_volume = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(floor_surface_area)
-      if !valid_area
-        invalid_number_error()
+      valid_volume = Validators.validate_room_dimensions(room_volume)
+      if !valid_volume
+        Validators.invalid_number_error()
         !proceed
       else
         break
@@ -151,7 +159,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material_error()
+        Validators.invalid_material_error()
       end
     end
   
@@ -182,7 +190,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material_error()
+        Validators.invalid_material_error()
       end
     end
 
@@ -213,7 +221,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material_error()
+        Validators.invalid_material_error()
       end
     end
 
@@ -244,7 +252,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material_error()
+        Validators.invalid_material_error()
       end
     end
 
@@ -275,7 +283,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material_error()
+        Validators.invalid_material_error()
       end
     end
 
@@ -306,7 +314,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material_error()
+        Validators.invalid_material_error()
       end
     end
 
@@ -337,7 +345,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material_error()
+        Validators.invalid_material_error()
       end
     end
 
@@ -368,7 +376,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material_error()
+        Validators.invalid_material_error()
       end
     end
 
@@ -416,7 +424,7 @@ module ReverbTime
       "1000Hz" => avg_absorption_coeff_1000Hz,
       "2000Hz" => avg_absorption_coeff_2000Hz,
       "4000Hz" => avg_absorption_coeff_4000Hz
-    }
+    } 
 
     puts "\nABSORPTION VALUES:".colorize(:light_yellow)
     puts "\nThe total absorption per octave band is:\n\n"
@@ -467,23 +475,6 @@ module ReverbTime
   def self.eyring(room_volume, total_surface_area, avg_absorption_coeff)
     reverb_eyring = ((0.16 * room_volume) / (-2.3 * total_surface_area * Math.log10(1 - avg_absorption_coeff))).truncate(2)
     return reverb_eyring
-  end
-
-  ##### Input Verifications #####
-  def self.invalid_material_error()
-    box = TTY::Box.frame("Invalid option! \nOnly 1 and 2 are accepted.".colorize(:red), width: 30, height: 6, border: :thick, align: :center, padding: [1,0,0,0], title: {top_left: " x ERROR "}).colorize(:red)
-    puts
-    puts box
-    puts "Press any key to continue"
-    gets
-  end
-
-  def self.invalid_number_error()
-    box = TTY::Box.frame("Invalid input! \nOnly numbers above 0 are accepted.".colorize(:red), width: 30, height: 7, border: :thick, align: :center, padding: [1,0,1,1], title: {top_left: " x ERROR "}).colorize(:red)
-    puts
-    puts box
-    puts "Press any key to continue"
-    gets
   end
 
   ##### Repeat? #####
