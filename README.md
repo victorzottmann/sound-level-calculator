@@ -228,11 +228,11 @@ Where `r` is the distance between the source and the receiver, and `r_reference`
 
 ### Reverberation Time
 
-Reverberation time is the amount of time the level of a sound source takes to decay 60 dB. The image below (NTI Audio, n.d.) demonstrates an example.
+Reverberation time is the amount of time the level of a sound source takes to decay 60 dB (see image (NTI Audio, n.d.) below).
 
 <img src="images/screenshots/reverb-time.jpg" alt="Screen Shot 2020-12-17 at 10.30.55 am"  />
 
-The difference between a reverberant room and one that does not have much reverb (or none for the matter) is that the latter would contain more absorption. Hence, it could be argued that reverberation time is inversely proportional to absorption. Take the following two images for example. The first one, taken inside an empty living room, is comprised of hard surfaces, such as windows and a very reflective floor. When surfaces are flat, stiff and not porous, sound would not be absorbed by them, but rather the waves would reflected between them, thus building up sound and resulting in reverberation. Examples are garages, bathrooms, corridors, and hallways. 
+The difference between a reverberant room and one that does not have much reverb (or none for the matter) is that the latter would contain more absorption. Hence, it could be argued that reverberation time is inversely proportional to absorption. Take the following two images for example. The first one, taken inside an empty living room, is comprised of hard surfaces, such as windows and a very reflective floor. When surfaces are flat, stiff and not porous, sound would not be absorbed by them, but rather the waves would reflected between them, thus building up sound and resulting in reverberation. Examples consist of garages, bathrooms, corridors, hallways, etc.
 
 <img src="images/screenshots/empty-room.jpeg" alt="empty-room" style="zoom:50%;" />
 
@@ -274,7 +274,7 @@ Where:
 
 ##### Norris-Eyring Equation:
 
-<img src="images/screenshots/eyring-equation.png" alt="eyring-equation" style="zoom: 50%;" />
+<img src="images/screenshots/eyring-equation.png" alt="eyring-equation" style="zoom: 33%;" />
 
 Where:
 		    V is the volume of the room
