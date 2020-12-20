@@ -240,7 +240,7 @@ The difference between a reverberant room and one that does not have much reverb
 
 <img src="images/screenshots/empty-room.jpeg" alt="empty-room" style="zoom:50%;" />
 
-On the other hand, a completely absorptive room, also known as an anechoic chamber, would have all surfaces made of highly absorptive material so as not to have any reverberation. Such a room would not be used by the general public, of course; they exist in order to conduct specific acoustic measurements that cannot be inteferred by reverberation.
+On the other hand, a completely absorptive room, also known as an anechoic chamber, would have all surfaces made of highly absorptive material so as not to have any reverberation. Such a room would not be used by the general public, of course; they exist in order to conduct specific acoustic measurements that cannot be intefered by reverberation.
 
 <img src="images/screenshots/anechoic-chamber.jpg" alt="anechoic-chamber"  />
 
