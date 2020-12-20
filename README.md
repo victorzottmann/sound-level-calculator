@@ -204,13 +204,24 @@ Where `r` is the distance between the source and the receiver, and `r_reference`
 
      
 
-   In code, both the sum and the average calculations would be written as the following.
+   In code, both the sum and the average calculations would be written as the following. "Validators" refer to a separate module containing input verification methods.
 
    ```ruby
    puts "\nPlease input an array of sound pressure levels (SPL) separated by a space:"
        
-   input = gets.chomp.split(" ")
-   input = input.map(&:to_f)
+   proceed = false
+   while !proceed
+     puts "\nPlease input an array of sound pressure levels (SPL) separated by a space:".colorize(:green)
+     levels = gets.chomp.split(" ")
+     levels = levels.map {|i| i.to_f}
+     valid_levels = Validators.validate_pressure_levels(levels)
+     if !valid_levels
+       Validators.invalid_number_error
+       !proceed
+     else
+       break
+     end
+    end
    
    # Sum of levels
    total_sum = 0
