@@ -541,6 +541,10 @@ Running the program:
 
 ​	`$ ruby index.rb`
 
+In case you want to stop the program:
+
+​	`Press CTRL + C`
+
 
 
 ## References

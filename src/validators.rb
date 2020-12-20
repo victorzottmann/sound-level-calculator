@@ -3,6 +3,43 @@ require 'tty-box'
 
 module Validators
 
+
+  def self.validate_temperature(temperature)
+    temperature = temperature.to_f
+    if temperature > 0
+      return true
+    else
+      return false
+    end
+  end
+
+  # spl = sound pressure level
+  def self.validate_pressure_levels(levels)
+    levels.each do |i|
+      if i > 0
+        return true
+      else
+        return false
+      end
+    end
+  end
+
+  def self.validate_level(level)
+    if level > 0
+      return true
+    else
+      return false
+    end
+  end
+
+  def self.validate_distance(distance)
+    if distance > 0
+      return true
+    else
+      return false
+    end
+  end
+
   def self.invalid_yes_no()
     box = TTY::Box.frame("Invalid input! \nOnly (y/n) are accepted.", width: 30, height: 6, border: :thick, align: :center, padding: [1,0,0,0], title: {top_left: " x ERROR "}).colorize(:red)
     puts
@@ -11,14 +48,14 @@ module Validators
     gets
   end
 
-  def self.validate_input(input)
-    input = input.to_i
-    if input > 0 && input < 5
-      return true
-    else
-      return false
-    end
-  end
+  # def self.validate_input(input)
+  #   input = input.to_i
+  #   if input > 0 && input < 5
+  #     return true
+  #   else
+  #     return false
+  #   end
+  # end
 
   def self.validate_room_dimensions(dimension)
     dimension_number = dimension.to_f

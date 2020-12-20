@@ -15,6 +15,7 @@ module General
 
     options = ["Speed of Sound", "Exit"]
     input = prompt.select("\nWhat would you like to calculate?\n", options)
+    
     case input 
     when "Speed of Sound"
       speed_of_sound()
@@ -29,8 +30,19 @@ module General
     
     puts "\n================================================="
     puts "\n# SPEED OF SOUND #".colorize(:light_yellow)
-    puts "\nPlease input the temperature (Celsius): "
-    temperature = gets.chomp.to_f
+    
+    proceed = false
+    while !proceed 
+      puts "\nPlease input the temperature (Celsius):".colorize(:green)
+      temperature = gets.chomp.to_f
+      valid_temperature = Validators.validate_temperature(temperature)
+      if !valid_temperature
+        Validators.invalid_number_error()
+        !proceed
+      else
+        break
+      end
+    end
 
     speed = (331.3 * Math.sqrt(1 + (temperature / 273.15))).truncate(0)
     puts "\nThe speed of sound is #{speed} m/s.".colorize(:cyan)
