@@ -2,6 +2,8 @@
 
 A simple interactive calculator for making quick measurements of sound propagation in rooms.
 
+**GitHub Repository:** https://github.com/victorzottmann/acoustics-calculator
+
 ## Statement of Purpose and Scope
 
 The purpose of this calculator is to facilitate access to on-the-go measurements of room acoustics parameters. Being fairly complicated to conduct, such measurements often require professional equipment and digital signal processing techniques, which can be very expensive and impractical in many circumstances. Notwithstanding the necessary technologies, what makes calculating room acoustics parameters cumbersome is the plethora of equations that are dependent on one another. Indeed, there are quite a few softwares the solve this problem, although they are used by engineers or consultants rather than the general public. 
@@ -30,7 +32,7 @@ A particular use case of a room acoustics calculator would be for when musicians
 
 
 
-## Functionalities 
+## Available Features 
 
 As soon as the user load the application, a Welcome window introduces them to all the possible calculations they can perform, as well as with an option to exit the program. Each calculation has its own menu, which introduces the user to what will be displayed and how should they use it. On the other hand, the main menu simply asks the user what do they want to calculate, as shown in the image below.
 
@@ -38,7 +40,7 @@ As soon as the user load the application, a Welcome window introduces them to al
 
 ### General Calculations
 
-At the moment, only one general calculation has been implemented in the calculator: the speed of sound. This parameter is needed in many measurement situations, for example, when designing acoustic absorbers. The formula for calculating the speed of sound is the following.
+At the moment, only one general calculation has been implemented in the calculator: the speed of sound, which is dependent on temperature. It is important to include the speed of sound (and the temperature) in any reported measurements.
 
 ```ruby
 temperature = 20 # Celsius
@@ -266,9 +268,9 @@ Now that all the absortion values are available, calculating reverberation time 
 
 <img src="images/screenshots/sabine-equation.png" alt="sabine-equation" style="zoom: 33%;" />
 
-Where:
-			V is the volume of the room
-			A is the total absorption
+Where: <br>
+V is the volume of the room <br>
+A is the total absorption
 
 ---
 
@@ -276,10 +278,10 @@ Where:
 
 <img src="images/screenshots/eyring-equation.png" alt="eyring-equation" style="zoom: 33%;" />
 
-Where:
-		    V is the volume of the room
-			S is the total surface area
-	 	   a is the average absorption coefficient
+Where:<br>
+ V is the volume of the room<br>
+S is the total surface area<br>
+a is the average absorption coefficient
 
 ---
 
@@ -508,8 +510,9 @@ avg_absorption_coeffs = {
 
 ## Implementation Plan
 
+The implementation plan was developed in Trello.
 
-
+**Link to Trello board:** https://trello.com/b/lt2oU2NT/terminal-app
 
 
 ## HELP - How to Install and Use the Application

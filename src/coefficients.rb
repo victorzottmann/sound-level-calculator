@@ -57,18 +57,6 @@ module Absorption
   
     ## Walls
     {
-      material: "rough_concrete",
-      coeffs: {
-        "125Hz" => 0.02,
-        "250Hz" => 0.03,
-        "500Hz" => 0.03,
-        "1000Hz" => 0.03,
-        "2000Hz" => 0.04,
-        "4000Hz" => 0.07
-      }
-    },
-
-    {
       material: "brickwork",
       coeffs: {
         "125Hz" => 0.05,
