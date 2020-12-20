@@ -4,6 +4,8 @@ A simple interactive calculator for making quick measurements of sound propagati
 
 **GitHub Repository:** https://github.com/victorzottmann/acoustics-calculator
 
+**Implementation Plan (Trello Board):** https://trello.com/b/lt2oU2NT/terminal-app
+
 ## Statement of Purpose and Scope
 
 The purpose of this calculator is to facilitate access to on-the-go measurements of room acoustics parameters. Being fairly complicated to conduct, such measurements often require professional equipment and digital signal processing techniques, which can be very expensive and impractical in many circumstances. Notwithstanding the necessary technologies, what makes calculating room acoustics parameters cumbersome is the plethora of equations that are dependent on one another. Indeed, there are quite a few softwares the solve this problem, although they are used by engineers or consultants rather than the general public. 
@@ -507,12 +509,6 @@ avg_absorption_coeffs = {
 <img src="images/flowcharts/reverb_time_flowchart.jpeg" alt="reverb_time_flowchart" style="zoom:50%;" />
 
 
-
-## Implementation Plan
-
-The implementation plan was developed in Trello.
-
-**Link to Trello board:** https://trello.com/b/lt2oU2NT/terminal-app
 
 
 ## HELP - How to Install and Use the Application
