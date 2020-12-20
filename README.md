@@ -24,7 +24,7 @@ A particular use case of a room acoustics calculator would be for when musicians
 
 ### Features List - Future Implementations
 
-- As a user, I would like to know whether the estimated reverberation time of a room is within the recommended values established by the Australian / New Zealand Standard  ***"Acoustics - Recommended design sound levels and reverberation times for building interiors (AS/NZS 2107-2016)"***.
+- As a user, I would like to know whether the estimated reverberation time of a room is within the recommended values established by the Australian / New Zealand Standard  ***"Acoustics - Recommended design sound levels and reverberation times for building interiors (AS/NZS 2107-2016)"*** (Standards Australia, 2016).
 
 - As a user, I would like to be able to calculate the amount of room modes (frequency resonances), given the dimensions of a room.
 
@@ -74,7 +74,7 @@ To understand better how the A-Weighting curve related to our hearing, below is 
 
 <img src="docs/screenshots/equal-loudness-inverted.png" alt="equal-loudness-inverted" style="zoom: 33%;" />
 
-Finally, the table below demonstrates how the A-Weighted conversion is made given a set of sound pressure levels. In this case, the levels used belong to the standardized level of speech (Australian / New Zealand Standards).
+Finally, the table below demonstrates how the A-Weighted conversion is made given a set of sound pressure levels. In this case, the levels used belong to the standardized level of speech (Standards Australia, 2016).
 
 <img src="docs/screenshots/a-weighting.jpeg" alt="a-weighting table" style="zoom:50%;" />
 
@@ -565,6 +565,8 @@ Everest, F. A., & Pohlmann, K. C. (2014). *Master Handbook of Acoustics* (6th ed
 NTI Audio. (n.d.). Frequency Weightings for Sound Level Measurements. Retrieved from https://www.nti-audio.com/en/support/know-how/frequency-weightings-for-sound-level-measurements
 
 NTI Audio. (n.d.). Reverberation Time (RT60) Measurement. Retrieved from https://www.nti-audio.com/en/applications/room-building-acoustics/reverberation-time-rt60-measurement
+
+Standards Australia. (2016). *Acoustics––Recommended design sound levels and reverberation times for building interiors (AS/NZS 2107-2016)*. Retrieved from https://infostore.saiglobal.com/en-gb/standards/as-nzs-2107-2016-100706_saig_as_as_211604/
 
 
 
