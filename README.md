@@ -549,7 +549,7 @@ In case you want to stop the program:
 
 ## References
 
-Everest, F. A., & Pohlmann, K. C. (2014). Master Handbook of Acoustics (6th ed.). USA: McGraw-Hill Education. 
+Everest, F. A., & Pohlmann, K. C. (2014). ***Master Handbook of Acoustics*** (6th ed.). USA: McGraw-Hill Education. 
 
 NTI Audio. (n.d.). Frequency Weightings for Sound Level Measurements. Retrieved from https://www.nti-audio.com/en/support/know-how/frequency-weightings-for-sound-level-measurements
 
