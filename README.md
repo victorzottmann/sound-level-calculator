@@ -38,7 +38,7 @@ A particular use case of a room acoustics calculator would be for when musicians
 
 As soon as the user load the application, a Welcome window introduces them to all the possible calculations they can perform, as well as with an option to exit the program. Each calculation has its own menu, which introduces the user to what will be displayed and how should they use it. On the other hand, the main menu simply asks the user what do they want to calculate, as shown in the image below.
 
-<img src="images/screenshots/main-menu.png" alt="main-menu" style="zoom: 33%;" />
+<img src="docs/screenshots/main-menu.png" alt="main-menu" style="zoom: 33%;" />
 
 ### General Calculations
 
@@ -64,19 +64,19 @@ In the Sound Level menu, the user is presented with a total of four calculations
 
    For example, as highlighted in **BLUE**, for 100 Hz to be perceived equally as loud as 1000 Hz (highlighted in **RED**), the sound pressure level must be 30 dB, as opposed to only 10 dB for 1000 Hz. In other words, our hearing is much more senstive to higher frequencies than low frequencies. 
 
-<img src="images/screenshots/equal-loudness.png" alt="equal-loudness" style="zoom: 33%;" />
+<img src="docs/screenshots/equal-loudness.png" alt="equal-loudness" style="zoom: 33%;" />
 
 Therefore, in order to account for such limitations, the A-Weighting curve is applied by subtracting values from lower frequencies and adding to the higher frequencies. The graph below (NTI Audio, n.d.) shows the three most commonly used frequency weighting curves. Z-Weighting is simply the unweighted, or "linear" sound pressure levels; the C-Weighting curve is used for industrial purposes.
 
-<img src="images/screenshots/curves.jpg" alt="curves" style="zoom:75%;" />
+<img src="docs/screenshots/curves.jpg" alt="curves" style="zoom:75%;" />
 
 To understand better how the A-Weighting curve related to our hearing, below is an inverted version of the equal loudness contour. It is evident that the curve follows, indeed, the frequency sensitivities of our hearing.
 
-<img src="images/screenshots/equal-loudness-inverted.png" alt="equal-loudness-inverted" style="zoom: 33%;" />
+<img src="docs/screenshots/equal-loudness-inverted.png" alt="equal-loudness-inverted" style="zoom: 33%;" />
 
 Finally, the table below demonstrates how the A-Weighted conversion is made given a set of sound pressure levels. In this case, the levels used belong to the standardized level of speech (Australian / New Zealand Standards).
 
-<img src="images/screenshots/a-weighting.jpeg" alt="a-weighting table" style="zoom:50%;" />
+<img src="docs/screenshots/a-weighting.jpeg" alt="a-weighting table" style="zoom:50%;" />
 
 
 
@@ -234,15 +234,15 @@ Where `r` is the distance between the source and the receiver, and `r_reference`
 
 Reverberation time is the amount of time the level of a sound source takes to decay 60 dB (see image (NTI Audio, n.d.) below).
 
-<img src="images/screenshots/reverb-time.jpg" alt="Screen Shot 2020-12-17 at 10.30.55 am"  />
+<img src="docs/screenshots/reverb-time.jpg" alt="Screen Shot 2020-12-17 at 10.30.55 am"  />
 
 The difference between a reverberant room and one that does not have much reverb (or none for the matter) is that the latter would contain more absorption. Hence, it could be argued that reverberation time is inversely proportional to absorption. Take the following two images for example. The first one, taken inside an empty living room, is comprised of hard surfaces, such as windows and a very reflective floor. When surfaces are flat, stiff and not porous, sound would not be absorbed by them, but rather the waves would reflected between them, thus building up sound and resulting in reverberation. Examples consist of garages, bathrooms, corridors, hallways, etc.
 
-<img src="images/screenshots/empty-room.jpeg" alt="empty-room" style="zoom:50%;" />
+<img src="docs/screenshots/empty-room.jpeg" alt="empty-room" style="zoom:50%;" />
 
-On the other hand, a completely absorptive room, also known as an anechoic chamber, would have all surfaces made of highly absorptive material so as not to have any reverberation. Such a room would not be used by the general public, of course; they exist in order to conduct specific acoustic measurements that cannot be inteferred by reverberation.
+On the other hand, a completely absorptive room, also known as an anechoic chamber, would have all surfaces made of highly absorptive material so as not to have any reverberation. Such a room would not be used by the general public, of course; they exist in order to conduct specific acoustic measurements that cannot be intefered by reverberation.
 
-<img src="images/screenshots/anechoic-chamber.jpg" alt="anechoic-chamber"  />
+<img src="docs/screenshots/anechoic-chamber.jpg" alt="anechoic-chamber"  />
 
 
 
@@ -250,15 +250,15 @@ On the other hand, a completely absorptive room, also known as an anechoic chamb
 
 In order to calculate the reverberation time of a room, it is necessary to identify which materials compose the room, as well as their absorptions coefficients. The coefficients indicate how well does a material absorb sound, where 0 indicates no absorption, and 1 complete absorption (see the table below). Furthermore, as mentioned above, materials that are harder and flatter will not have good absorption, whereas those that are porous and fluffy will. 
 
-![aborsption-coefficients](images/screenshots/absorption-coefficients.jpeg)
+![aborsption-coefficients](docs/screenshots/absorption-coefficients.jpeg)
 
 Below is a quick example of the process of calculating the total absorption of the room, and therefore the reverberation time. First, it is necessary to get the dimensions of the room, including `volume`, `surface areas` of each wall, and the `total surface area` of the room. Then, for each surface, it is necessary to multiply the absorption coefficients of a given material with the surface area in which the material will cover. The result will be absorption per square metre.
 
-![absorption-example](images/screenshots/absorption-example.jpeg)
+![absorption-example](docs/screenshots/absorption-example.jpeg)
 
 Finally, to get the total absorption, the absorption calculated for every octave band (frequency) must be summed up, as shown in the image below. The process for finding the average is the same.
 
-![total absorption of the room](images/screenshots/absorption-total.jpeg)
+![total absorption of the room](docs/screenshots/absorption-total.jpeg)
 
 
 
@@ -268,7 +268,7 @@ Now that all the absortion values are available, calculating reverberation time 
 
 ##### Sabine Equation:
 
-<img src="images/screenshots/sabine-equation.png" alt="sabine-equation" style="zoom: 33%;" />
+<img src="docs/screenshots/sabine-equation.png" alt="sabine-equation" style="zoom: 33%;" />
 
 Where: <br>
 V is the volume of the room <br>
@@ -278,7 +278,7 @@ A is the total absorption
 
 ##### Norris-Eyring Equation:
 
-<img src="images/screenshots/eyring-equation.png" alt="eyring-equation" style="zoom: 33%;" />
+<img src="docs/screenshots/eyring-equation.png" alt="eyring-equation" style="zoom: 33%;" />
 
 Where:<br>
  V is the volume of the room<br>
@@ -488,25 +488,25 @@ avg_absorption_coeffs = {
 
 ### Index - Main Menu
 
-<img src="images/flowcharts/index-flowchart.png" alt="index-flowchart" style="zoom: 50%;" />
+<img src="docs/flowcharts/index-flowchart.png" alt="index-flowchart" style="zoom: 50%;" />
 
 ---
 
 ### General Calculations
 
-<img src="images/flowcharts/general_calc_flowchart.png" alt="general_calc_flowchart" style="zoom:50%;" />
+<img src="docs/flowcharts/general_calc_flowchart.png" alt="general_calc_flowchart" style="zoom:50%;" />
 
 ---
 
 ### Sound Level Calculations
 
-<img src="images/flowcharts/sound-level-flowchart.jpeg" alt="sound-level-flowchart" style="zoom:50%;" />
+<img src="docs/flowcharts/sound-level-flowchart.jpeg" alt="sound-level-flowchart" style="zoom:50%;" />
 
 ---
 
 ### Reverb Time Calculations
 
-<img src="images/flowcharts/reverb_time_flowchart.jpeg" alt="reverb_time_flowchart" style="zoom:50%;" />
+<img src="docs/flowcharts/reverb_time_flowchart.jpeg" alt="reverb_time_flowchart" style="zoom:50%;" />
 
 
 
