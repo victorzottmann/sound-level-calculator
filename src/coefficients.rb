@@ -27,6 +27,8 @@ module Absorption
         "4000Hz" => 0.07
       }
     },
+
+    
   
     ## Ceiling
     {

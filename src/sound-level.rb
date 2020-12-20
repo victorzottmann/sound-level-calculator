@@ -199,6 +199,8 @@ module SoundLevel
   end
 
   def self.sum_and_average()
+    system("clear")
+    
     puts "\n================================================="
     puts "\n# Sum and Average Calculator #".colorize(:light_yellow)
     puts "\nPlease input an array of sound pressure levels (SPL) separated by a space:"
@@ -246,7 +248,7 @@ module SoundLevel
   end
 
   def self.pressure_to_power_level(pressure_level, distance)
-    power_level = (pressure_level - (10 * Math.log10(1 / (4 * PI * (distance * distance))))).truncate(1)
+    power_level = (pressure_level - (10 * Math.log10(1 / (4 * PI * (distance * distance)))))
 
     output = "\nThe resulting Sound Power Level is %.1f dB." % [power_level]
     return output

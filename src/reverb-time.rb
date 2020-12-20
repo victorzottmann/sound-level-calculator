@@ -32,7 +32,15 @@ module ReverbTime
     door_absorption = {}
     window_absorption = {}
 
-    total_surface_area = 0.0
+    floor_surface_area = 0.0
+    ceiling_surface_area = 0.0
+    front_wall_surface_area = 0.0
+    back_wall_surface_area = 0.0
+    left_wall_surface_area = 0.0
+    door_surface_area = 0.0
+    window_surface_area = 0.0
+
+    total_surface_area = 0.0  
 
     puts "\n================================================="
     puts "\n##### REVERBERATION TIME CALCULATOR #####".colorize(:light_yellow)
@@ -47,13 +55,12 @@ module ReverbTime
     puts "\nPlease input the following SURFACE AREAS (m2):\n\n"
     
     proceed = false
-
     while !proceed
       puts "Floor / Ceiling: ".colorize(:green)
       ceiling_surface_area = floor_surface_area = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(floor_surface_area)
+      valid_area = Validators.validate_room_dimensions(floor_surface_area)
       if !valid_area
-        invalid_input()
+        Validators.invalid_number_error()
         !proceed
       else
         break
@@ -63,9 +70,9 @@ module ReverbTime
     while !proceed
       puts "\nFront / Back walls: ".colorize(:green)
       back_wall_surface_area = front_wall_surface_area = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(front_wall_surface_area)
+      valid_area = Validators.validate_room_dimensions(front_wall_surface_area)
       if !valid_area
-        invalid_input()
+        Validators.invalid_number_error()
         !proceed
       else
         break
@@ -75,9 +82,9 @@ module ReverbTime
     while !proceed
       puts "\nLeft / Right walls: ".colorize(:green)
       right_wall_surface_area = left_wall_surface_area = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(left_wall_surface_area)
+      valid_area = Validators.validate_room_dimensions(left_wall_surface_area)
       if !valid_area
-        invalid_input()
+        Validators.invalid_number_error()
         !proceed
       else
         break
@@ -87,9 +94,9 @@ module ReverbTime
     while !proceed
       puts "\nDoors: ".colorize(:green)
       door_surface_area = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(door_surface_area)
+      valid_area = Validators.validate_room_dimensions(door_surface_area)
       if !valid_area
-        invalid_input()
+        invalid_number_error()
         !proceed
       else
         break
@@ -99,9 +106,9 @@ module ReverbTime
     while !proceed
       puts "\nWindows: ".colorize(:green)
       window_surface_area = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(window_surface_area)
+      valid_area = Validators.validate_room_dimensions(window_surface_area)
       if !valid_area
-        invalid_input()
+        Validators.invalid_number_error()
         !proceed
       else
         break
@@ -113,9 +120,9 @@ module ReverbTime
     while !proceed
       puts "\nVolume: ".colorize(:green)
       room_volume = gets.chomp.to_f
-      valid_area = Validators.validate_surface_area(floor_surface_area)
-      if !valid_area
-        invalid_input()
+      valid_volume = Validators.validate_room_dimensions(room_volume)
+      if !valid_volume
+        Validators.invalid_number_error()
         !proceed
       else
         break
@@ -132,9 +139,9 @@ module ReverbTime
       floor_type = gets.chomp.to_i
       case floor_type
       when 1
-        Absorption::Coefficients.each do |item|
-         if item[:material] == "thin_carpet_concrete"
-          floor_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+         if key[:material] == "thin_carpet_concrete"
+          floor_coeffs = key[:coeffs]
          end
         end
         floor_coeffs.each do |frequency, coeff|
@@ -142,9 +149,9 @@ module ReverbTime
         end
         break
       when 2
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "wooden_floor_joists"
-           floor_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "wooden_floor_joists"
+           floor_coeffs = key[:coeffs]
           end
          end
         floor_coeffs.each do |frequency, coeff|
@@ -152,31 +159,30 @@ module ReverbTime
         end
         break
       else
-        invalid_material()
+        Validators.invalid_material_error()
       end
     end
   
     while true
-    
       puts "\nCeiling:"
       puts "\n1. Mineral wool tiles with 180mm of airspace".colorize(:green)
       puts "2. Gypsum plaster titles".colorize(:green)
       ceiling_type = gets.chomp.to_i
       case ceiling_type
       when 1
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "mineral_wool_tiles"
-           ceiling_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "mineral_wool_tiles"
+           ceiling_coeffs = key[:coeffs]
           end
          end
         ceiling_coeffs.each do |frequency, coeff|
           ceiling_absorption[frequency] = (coeff * ceiling_surface_area).truncate(2)
         end
         break
-      when 2
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "gypsum_plaster_tiles"
-           ceiling_coeffs = item[:coeffs]
+      when 2 
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "gypsum_plaster_tiles"
+           ceiling_coeffs = key[:coeffs]
           end
          end
         ceiling_coeffs.each do |frequency, coeff|
@@ -184,7 +190,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material()
+        Validators.invalid_material_error()
       end
     end
 
@@ -195,9 +201,9 @@ module ReverbTime
       front_wall_type = gets.chomp.to_i
       case front_wall_type
       when 1
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "brickwork"
-           front_wall_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "brickwork"
+           front_wall_coeffs = key[:coeffs]
           end
          end
         front_wall_coeffs.each do |frequency, coeff|
@@ -205,9 +211,9 @@ module ReverbTime
         end
         break
       when 2
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "plasterboard"
-           front_wall_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "plasterboard"
+           front_wall_coeffs = key[:coeffs]
           end
          end
         front_wall_coeffs.each do |frequency, coeff|
@@ -215,7 +221,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material()
+        Validators.invalid_material_error()
       end
     end
 
@@ -226,9 +232,9 @@ module ReverbTime
       back_wall_type = gets.chomp.to_i
       case back_wall_type
       when 1
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "brickwork"
-           back_wall_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "brickwork"
+           back_wall_coeffs = key[:coeffs]
           end
          end
         back_wall_coeffs.each do |frequency, coeff|
@@ -236,9 +242,9 @@ module ReverbTime
         end
         break
       when 2
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "plasterboard"
-           back_wall_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "plasterboard"
+           back_wall_coeffs = key[:coeffs]
           end
          end
         back_wall_coeffs.each do |frequency, coeff|
@@ -246,7 +252,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material()
+        Validators.invalid_material_error()
       end
     end
 
@@ -257,9 +263,9 @@ module ReverbTime
       left_wall_type = gets.chomp.to_i
       case left_wall_type
       when 1
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "brickwork"
-           left_wall_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "brickwork"
+           left_wall_coeffs = key[:coeffs]
           end
          end
         left_wall_coeffs.each do |frequency, coeff|
@@ -267,9 +273,9 @@ module ReverbTime
         end
         break
       when 2
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "plasterboard"
-           left_wall_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "plasterboard"
+           left_wall_coeffs = key[:coeffs]
           end
          end
         left_wall_coeffs.each do |frequency, coeff|
@@ -277,7 +283,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material()
+        Validators.invalid_material_error()
       end
     end
 
@@ -288,9 +294,9 @@ module ReverbTime
       right_wall_type = gets.chomp.to_i
       case right_wall_type
       when 1
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "brickwork"
-           right_wall_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "brickwork"
+           right_wall_coeffs = key[:coeffs]
           end
          end
         right_wall_coeffs.each do |frequency, coeff|
@@ -298,9 +304,9 @@ module ReverbTime
         end
         break
       when 2
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "plasterboard"
-           right_wall_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "plasterboard"
+           right_wall_coeffs = key[:coeffs]
           end
          end
         right_wall_coeffs.each do |frequency, coeff|
@@ -308,7 +314,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material()
+        Validators.invalid_material_error()
       end
     end
 
@@ -319,9 +325,9 @@ module ReverbTime
       door_type = gets.chomp.to_i
       case door_type
       when 1
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "wood_hollow_door"
-           door_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "wood_hollow_door"
+           door_coeffs = key[:coeffs]
           end
          end
         door_coeffs.each do |frequency, coeff|
@@ -329,9 +335,9 @@ module ReverbTime
         end
         break
       when 2
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "timber_solid_door"
-           door_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "timber_solid_door"
+           door_coeffs = key[:coeffs]
           end
          end
         door_coeffs.each do |frequency, coeff|
@@ -339,7 +345,7 @@ module ReverbTime
         end
         break
       else
-        invalid_material()
+        Validators.invalid_material_error()
       end
     end
 
@@ -350,9 +356,9 @@ module ReverbTime
       window_type = gets.chomp.to_i
       case window_type
       when 1
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "four_mm_glass"
-           window_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "four_mm_glass"
+           window_coeffs = key[:coeffs]
           end
          end
         window_coeffs.each do |frequency, coeff|
@@ -360,9 +366,9 @@ module ReverbTime
         end
         break
       when 2
-        Absorption::Coefficients.each do |item|
-          if item[:material] == "six_mm_glass"
-           window_coeffs = item[:coeffs]
+        Absorption::Coefficients.each do |key|
+          if key[:material] == "six_mm_glass"
+           window_coeffs = key[:coeffs]
           end
          end
         window_coeffs.each do |frequency, coeff|
@@ -370,14 +376,14 @@ module ReverbTime
         end
         break
       else
-        invalid_material()
+        Validators.invalid_material_error()
       end
     end
 
     total_surface_area = floor_surface_area + ceiling_surface_area + front_wall_surface_area + back_wall_surface_area + left_wall_surface_area + right_wall_surface_area + door_surface_area + window_surface_area
 
-    all_surfaces_coeffs = Array.new
-    all_surfaces_coeffs.push(
+    absorption_all_surfaces = Array.new
+    absorption_all_surfaces.push(
       floor_absorption, 
       ceiling_absorption, 
       front_wall_absorption, 
@@ -388,12 +394,12 @@ module ReverbTime
       window_absorption
     )
 
-    total_absorption_125Hz = all_surfaces_coeffs.map{|freq| freq["125Hz"]}.inject(:+)
-    total_absorption_250Hz = all_surfaces_coeffs.map{|freq| freq["250Hz"]}.inject(:+)
-    total_absorption_500Hz = all_surfaces_coeffs.map{|freq| freq["500Hz"]}.inject(:+)
-    total_absorption_1000Hz = all_surfaces_coeffs.map{|freq| freq["1000Hz"]}.inject(:+)
-    total_absorption_2000Hz = all_surfaces_coeffs.map{|freq| freq["2000Hz"]}.inject(:+)
-    total_absorption_4000Hz = all_surfaces_coeffs.map{|freq| freq["4000Hz"]}.inject(:+)
+    total_absorption_125Hz = absorption_all_surfaces.map{|freq| freq["125Hz"]}.inject(:+)
+    total_absorption_250Hz = absorption_all_surfaces.map{|freq| freq["250Hz"]}.inject(:+)
+    total_absorption_500Hz = absorption_all_surfaces.map{|freq| freq["500Hz"]}.inject(:+)
+    total_absorption_1000Hz = absorption_all_surfaces.map{|freq| freq["1000Hz"]}.inject(:+)
+    total_absorption_2000Hz = absorption_all_surfaces.map{|freq| freq["2000Hz"]}.inject(:+)
+    total_absorption_4000Hz = absorption_all_surfaces.map{|freq| freq["4000Hz"]}.inject(:+)
 
     total_absorption = {
       "125Hz" => total_absorption_125Hz,
@@ -418,7 +424,7 @@ module ReverbTime
       "1000Hz" => avg_absorption_coeff_1000Hz,
       "2000Hz" => avg_absorption_coeff_2000Hz,
       "4000Hz" => avg_absorption_coeff_4000Hz
-    }
+    } 
 
     puts "\nABSORPTION VALUES:".colorize(:light_yellow)
     puts "\nThe total absorption per octave band is:\n\n"
@@ -451,7 +457,7 @@ module ReverbTime
       reverb_time_eyring = eyring(room_volume, total_surface_area, coeff)
       puts "- #{octave}: #{reverb_time_eyring} seconds".colorize(:cyan)
       eyring_octave_bands[octave] = reverb_time_eyring
-    end
+    end 
     eyring_mid_average = ((eyring_octave_bands["500Hz"] + eyring_octave_bands["1000Hz"]) / 2).truncate(2)
     puts "\nThe mid-frequency average (500Hz and 1000Hz) is: %.2f seconds" % [eyring_mid_average]
 
@@ -469,23 +475,6 @@ module ReverbTime
   def self.eyring(room_volume, total_surface_area, avg_absorption_coeff)
     reverb_eyring = ((0.16 * room_volume) / (-2.3 * total_surface_area * Math.log10(1 - avg_absorption_coeff))).truncate(2)
     return reverb_eyring
-  end
-
-  ##### Input Verifications #####
-  def self.invalid_material()
-    box = TTY::Box.frame("Invalid option! \nOnly 1 and 2 are accepted.".colorize(:red), width: 30, height: 6, border: :thick, align: :center, padding: [1,0,0,0], title: {top_left: " x ERROR "}).colorize(:red)
-    puts
-    puts box
-    puts "Press any key to continue"
-    gets
-  end
-
-  def self.invalid_input()
-    box = TTY::Box.frame("Invalid input! \nOnly numbers above 0 are accepted.".colorize(:red), width: 30, height: 7, border: :thick, align: :center, padding: [1,0,1,1], title: {top_left: " x ERROR "}).colorize(:red)
-    puts
-    puts box
-    puts "Press any key to continue"
-    gets
   end
 
   ##### Repeat? #####
