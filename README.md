@@ -566,7 +566,7 @@ NTI Audio. (n.d.). Frequency Weightings for Sound Level Measurements. Retrieved 
 
 NTI Audio. (n.d.). Reverberation Time (RT60) Measurement. Retrieved from https://www.nti-audio.com/en/applications/room-building-acoustics/reverberation-time-rt60-measurement
 
-Standards Australia. (2016). *Acoustics––Recommended design sound levels and reverberation times for building interiors (AS/NZS 2107-2016)*. Retrieved from https://infostore.saiglobal.com/en-gb/standards/as-nzs-2107-2016-100706_saig_as_as_211604/
+Standards Australia. (2016). *Acoustics––Recommended design sound levels and reverberation times for building interiors* (AS/NZS 2107-2016). Retrieved from https://infostore.saiglobal.com/en-gb/standards/as-nzs-2107-2016-100706_saig_as_as_211604/
 
 
 
