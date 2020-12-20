@@ -60,7 +60,7 @@ In the Sound Level menu, the user is presented with a total of four calculations
 
 1. **A-Weighting Conversion**
 
-   A-Weighting is a frequency weighting that accounts for the sensitivities and limitations of our hearing. Often times when sound pressure level is measured, the decibels by themselves do not say much about how loud would it actually be to people. For example, the following graph, called the Equal Loudness Contour, illlustrates sound pressure level as a function of frequency. What the contour means is that for low frequencies to sound equally as loud as higher frequencies, their sound pressure levels must be higher than those of higher frequencies. 
+   A-Weighting is a frequency weighting that accounts for the sensitivities and limitations of our hearing. Often times when sound pressure level is measured, the decibels by themselves do not say much about how loud would it actually be to people. For example, the following graph called the Equal Loudness Contour (Everest & Pohlmann, 2014), illlustrates sound pressure level as a function of frequency. What the contour means is that for low frequencies to sound equally as loud as higher frequencies, their sound pressure levels must be higher than those of higher frequencies. 
 
    For example, as highlighted in **BLUE**, for 100 Hz to be perceived equally as loud as 1000 Hz (highlighted in **RED**), the sound pressure level must be 30 dB, as opposed to only 10 dB for 1000 Hz. In other words, our hearing is much more senstive to higher frequencies than low frequencies. 
 
@@ -548,6 +548,8 @@ In case you want to stop the program:
 
 
 ## References
+
+Everest, F. A., & Pohlmann, K. C. (2014). Master Handbook of Acoustics (6th ed.). USA: McGraw-Hill Education. 
 
 NTI Audio. (n.d.). Frequency Weightings for Sound Level Measurements. Retrieved from https://www.nti-audio.com/en/support/know-how/frequency-weightings-for-sound-level-measurements
 
