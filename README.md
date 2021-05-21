@@ -1,6 +1,6 @@
 # Acoustics Calculator
 
-A simple interactive calculator for making quick measurements of sound propagation in rooms.
+A simple terminal-based interactive calculator for making quick measurements of sound propagation in rooms.
 
 **GitHub Repository:** https://github.com/victorzottmann/acoustics-calculator
 
