@@ -1,6 +1,6 @@
-# Acoustics Calculator
+# Sound Level Calculator
 
-A simple terminal-based interactive calculator for making quick measurements of sound propagation in rooms.
+A simple terminal-based interactive calculator for making quick measurements of sound level and room acoustics parameters.
 
 **GitHub Repository:** https://github.com/victorzottmann/acoustics-calculator
 
