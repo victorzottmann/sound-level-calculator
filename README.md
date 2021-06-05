@@ -2,7 +2,7 @@
 
 A simple terminal-based interactive calculator for making quick measurements of sound level and room acoustics parameters.
 
-**GitHub Repository:** https://github.com/victorzottmann/acoustics-calculator
+**GitHub Repository:** https://github.com/victorzottmann/sound-level-calculator
 
 **Implementation Plan (Trello Board):** https://trello.com/b/lt2oU2NT/terminal-app
 
