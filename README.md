@@ -8,9 +8,9 @@ A simple terminal-based interactive calculator for making quick measurements of 
 
 ## Statement of Purpose and Scope
 
-The purpose of this calculator is to facilitate access to on-the-go measurements of room acoustics parameters. Being fairly complicated to conduct, such measurements often require professional equipment and digital signal processing techniques, which can be very expensive and impractical in many circumstances. Notwithstanding the necessary technologies, what makes calculating room acoustics parameters cumbersome is the plethora of equations that are dependent on one another. Indeed, there are quite a few softwares the solve this problem, although they are used by engineers or consultants rather than the general public. 
+The purpose of this calculator is to facilitate access to on-the-go measurements of sound level and room acoustics parameters. Being fairly complicated to conduct, such measurements often require professional equipment and digital signal processing techniques, which can be very expensive and impractical in many circumstances. Notwithstanding the necessary technologies, what makes calculating room acoustics parameters cumbersome is the plethora of equations that are dependent on one another. Indeed, there are quite a few softwares the solve this problem, although they are used by engineers or consultants rather than the general public. 
 
-A particular use case of a room acoustics calculator would be for when musicians, video editors, or even sound designers are looking to treat their studios (or home studios) with the appropriate acoustic materials. In cases like such, a robust acoustic analysis of a room would not be necessary; rather, simple and on-the-go estimates of how sound would behave before and after treatment can be good enough.
+A particular use case of a sound level calculator would be for when musicians, video editors, or even sound designers are looking to treat their studios (or home studios) with the appropriate acoustic materials. In cases like such, a robust acoustic analysis of a room would not be necessary; rather, simple and on-the-go estimates of how sound would behave before and after treatment can be good enough.
 
 ### Features List - MVP
 
