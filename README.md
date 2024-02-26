@@ -6,7 +6,41 @@ A simple terminal-based interactive calculator for making quick measurements of 
 
 **Implementation Plan (Trello Board):** https://trello.com/b/lt2oU2NT/terminal-app
 
-## Statement of Purpose and Scope
+## How to Install the Dependencies and Run the Application
+
+#### Dependencies:
+
+- Ruby
+- Bundler (Ruby gem)
+- Colorize (Ruby gem)
+- TTY-Box (Ruby gem)
+- TTY-Prompt (Ruby gem)
+- Rspec (Ruby gem)
+- Zsh (Command Line Shell)
+
+#### To install and run:
+
+Installing Zsh:
+
+​	`$ brew install zsh`  - brew is short for Homebrew, which is a package manager.
+
+Installing the Gems:
+
+- `$ gem install bundler`
+- `$ gem install colorize`
+- `$ gem install tty-box`
+- `$ gem install tty-prompt`
+- `$ gem install rspec`
+
+Running the program:
+
+​	`$ ruby index.rb`
+
+In case you want to stop the program:
+
+​	`Press CTRL + C`
+
+## Purpose and Scope
 
 The purpose of this calculator is to facilitate access to on-the-go measurements of sound level and room acoustics parameters. Being fairly complicated to conduct, such measurements often require professional equipment and digital signal processing techniques, which can be very expensive and impractical in many circumstances. Notwithstanding the necessary technologies, what makes calculating room acoustics parameters cumbersome is the plethora of equations that are dependent on one another. Indeed, there are quite a few softwares the solve this problem, although they are used by engineers or consultants rather than the general public. 
 
@@ -518,45 +552,6 @@ avg_absorption_coeffs = {
 ### Reverb Time Calculations
 
 <img src="docs/flowcharts/reverb_time_flowchart.jpeg" alt="reverb_time_flowchart" style="zoom:50%;" />
-
-
-
-
-## HELP - How to Install and Use the Application
-
-#### Dependencies:
-
-- Ruby
-- Bundler (Ruby gem)
-- Colorize (Ruby gem)
-- TTY-Box (Ruby gem)
-- TTY-Prompt (Ruby gem)
-- Rspec (Ruby gem)
-- Zsh (Command Line Shell)
-
-#### To install and run:
-
-Installing Zsh:
-
-​	`$ brew install zsh`  - brew is short for Homebrew, which is a package manager.
-
-Installing the Gems:
-
-- `$ gem install bundler`
-- `$ gem install colorize`
-- `$ gem install tty-box`
-- `$ gem install tty-prompt`
-- `$ gem install rspec`
-
-Running the program:
-
-​	`$ ruby index.rb`
-
-In case you want to stop the program:
-
-​	`Press CTRL + C`
-
-
 
 ## References
 
